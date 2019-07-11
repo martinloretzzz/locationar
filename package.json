@@ -1,0 +1,57 @@
+{
+	"name": "threear",
+	"version": "0.1.0",
+	"description": "Location based Argumented Reality for three.js",
+	"keywords": [
+		"AR",
+		"Augmented Reality",
+		"three.js",
+		"Location Based",
+		"GPS"
+	],
+	"browser": "dist/LOCATIONAR.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/0b01001101/locationar"
+	},
+	"scripts": {
+		"start": "webpack-dev-server",
+		"serve": "live-server",
+		"build:ci": "webpack --mode=production --config webpack.config.js",
+		"build:prod": "webpack --mode=production --config webpack.config.js && npm run docs",
+		"build:dev": "webpack --mode=development --config webpack.config.js",
+		"build:watch": "webpack --mode=development --config webpack.config.js --watch",
+		"lint": "tslint src/**/*.ts && prettier **/*.ts --check",
+		"lint:fix": "tslint --fix src/**/*.ts && prettier **/*.ts --write",
+		"docs": "typedoc",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"version": "auto-changelog -p && git add CHANGELOG.md"
+	},
+	"author": "0x4d",
+	"license": "MIT",
+	"dependencies": {
+		"three": "^0.106.2"
+	},
+	"devDependencies": {
+		"@types/three": "^0.93.21",
+		"husky": "^1.3.1",
+		"live-server": "^1.2.1",
+		"prettier": "^1.16.4",
+		"prettier-webpack-plugin": "^1.2.0",
+		"ts-loader": "^5.3.3",
+		"tslint": "^5.12.1",
+		"tslint-config-prettier": "^1.18.0",
+		"typedoc": "^0.14.2",
+		"typescript": "^3.3.3",
+		"webpack": "^4.29.5",
+		"webpack-bundle-analyzer": "^3.3.2",
+		"webpack-cli": "^3.2.3",
+		"webpack-dev-server": "^3.7.2"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "npm run lint:fix"
+		}
+	},
+	"types": "src/LOCATIONAR.ts"
+}
