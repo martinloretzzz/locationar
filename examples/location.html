@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta
+			name="viewport"
+			content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+		/>
+		<script src="lib/three.106.min.js"></script>
+		<script src="../dist/LOCATIONAR.js"></script>
+		<title>LOCATIONAR Debug View</title>
+		<script>
+			// Bind window error for error handling
+			// prettier-ignore
+			window.addEventListener("error", function(event) {alert("ERROR: " + event.message + " at " + event.filename + " : " + event.lineno + " : " + event.colno);});
+		</script>
+	</head>
+
+	<body style="margin : 0px; overflow:hidden; font-family: Monospace;">
+		<div style="z-index: 10; position: absolute; top:10px; left:10px;">
+			<button onclick="showHideDebugView()" style="background-color: transparent;">
+				InfoPanel
+			</button>
+			<div
+				id="debugView"
+				style="visibility: hidden; background-color: rgba(138, 138, 138, 0.4); padding:10px;"
+			>
+				<div>
+					<b>Target</b>
+				</div>
+				<div>
+					<button onclick="setTargetToGpsCoords()" style="background-color: transparent;">
+						GetPosition
+					</button>
+					<button onclick="setTargetOffset(10,0)" style="background-color: transparent;">
+						+10N
+					</button>
+					<button onclick="setTargetOffset(0,10)" style="background-color: transparent;">
+						+10W
+					</button>
+					<button onclick="setTargetOffset(-10,0)" style="background-color: transparent;">
+						+10S
+					</button>
+					<button onclick="setTargetOffset(0,-10)" style="background-color: transparent;">
+						+10E
+					</button>
+				</div>
+				<br />
+				Latitude:
+				<input
+					type="number"
+					value="0" 
+					name="targetLatitude"
+					id="targetLatitude"
+					onchange="changeTargetLat(this.value)"
+					style="border:none; background-color: transparent;"
+				/><br />
+				Longitude:
+				<input
+					type="number"
+					value="0"
+					name="targetLongitude"
+					id="targetLongitude"
+					onchange="changeTargetLon(this.value)"
+					style="border:none; background-color: transparent;"
+				/>
+				<br /><br />
+
+				<div><b>DeviceOrientation:</b></div>
+				<div>Y[alpha]: <span id="alpha"></span></div>
+				<div>X[beta]:&nbsp; <span id="beta"></span></div>
+				<div>Z[gamma]: <span id="gamma"></span></div>
+				<div>Absolute: <span id="absolute"></span></div>
+
+				<br />
+				<div><b>GPS/Location:</b></div>
+				<div>Latitude: <span id="latitude"></span></div>
+				<div>Longitude: <span id="longitude"></span></div>
+				<div>Accuracy: <span id="accuracy"></span></div>
+				<div>Map: </b><a id="map-link" target="_blank"></a></div>
+
+				<br />
+				<div><b>Other Location info[only if GPS on]:</b></div>
+				<div>Speed: <span id="speed"></span></div>
+				<div>Heading: <span id="heading"></span></div>
+				<div>Altitude: <span id="altitude"></span></div>
+				<div>AltitudeAccuracy: <span id="altitudeAccuracy"></span></div>
+
+				<br />
+
+				<div><b>Light:</b></div>
+				<div>Illuminance: <span id="illuminance"></span></div>
+				<div>Brightness: <span id="brightness"></span></div>
+
+				<br />
+				<div><b>Camera Position:</b></div>
+				<div>Distance: <span id="distance"></span></div>
+				<div>OffsetX: <span id="offsetX"></span></div>
+				<div>OffsetY: <span id="offsetY"></span></div>
+				<div>OffsetZ: <span id="offsetZ"></span></div>
+
+				<div><span style="color:red;" id="errors"></span></div>
+			</div>
+		</div>
+		<script>
+			// all distances are straight, not curved along the earth surcace
+			// vertical error at 111km distance[1°] = 111000m * (1 - cos(1)) = 16.9m
+			//  => nearely nothing at 111km => ignore
+			// target = cordinateZeropoint, 
+			// camera = floating, 3d object in cordinateSystem
+
+			// 100 Mi8 74.53/59.25; fov = THREE.Math.radToDeg(2 * Math.atan(Math.sqrt(2.55 * 2.55 + 1 * 1) / (2 * ff2 = ))) f1 = 1.8, 2.4
+			// Camera aspecto, not screen, will be filled in when passed to LOCATIONAR.Source
+			let camera = new THREE.PerspectiveCamera(
+				74.53,
+				4/3, 
+				0.1,
+				1000
+			);
+
+			let scene = new THREE.Scene();
+
+			let light = new THREE.PointLight(0xffffff, 2);
+			light.position.set(0, 0, 0);
+			scene.add(light);
+
+			scene.add(new THREE.AmbientLight(0x404040));
+
+			let renderer = new THREE.WebGLRenderer({
+				alpha: true
+			});
+			renderer.setClearColor(new THREE.Color("lightgrey"), 0);
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			renderer.setPixelRatio(1); // window.devicePixelRatio
+			renderer.domElement.style.position = "absolute";
+			renderer.domElement.style.top = "0px";
+			renderer.domElement.style.left = "0px";
+			document.body.appendChild(renderer.domElement);
+
+
+			let targetLat = document.getElementById("targetLatitude").value;
+			let targetLon = document.getElementById("targetLongitude").value;
+
+			// Standalone setup of LocationProvider and DirectionProvider
+			/*let source = new LOCATIONAR.Source({ camera, canvas: renderer.domElement });
+			let locProvider = new LOCATIONAR.LocationProvider(gpsTarget, 6.0, loc => {
+				camera.position.copy(loc.getLocation());
+			});
+			let dirProvider = new LOCATIONAR.DirectionProvider(dir => {
+				camera.quaternion.copy(dir.getDirection());
+			});*/
+
+			let gpsTarget = new THREE.Vector3(targetLat, 0, targetLon); // Zero position of local coord system
+			let rotTarget = 25; // deg
+
+			// Set up LOCATIONAR
+			let controller = new LOCATIONAR.Controller(gpsTarget, camera, 1.6, renderer.domElement);
+
+			// chrome flag #enable-generic-sensor-extra-classes need to be enabled for AMbientlightSensor to work
+			let luxProvider = new LOCATIONAR.BrightnessProvider(lux => {
+				//light.power = lux.getLightPower(2);
+			});
+
+			// End of LOCATIONAR
+
+			let geometry = new THREE.BoxGeometry(4, 4, 4, 10, 10);
+			let material = new THREE.MeshPhongMaterial({ color: 0xff0000 });
+			let cube = new THREE.Mesh(geometry, material);
+			// Use the GeoMath to convert rad to degree and the other way around
+			cube.rotation.set(0, LOCATIONAR.GeoMath.degToRad(rotTarget), 0);
+			// Set position with gps coord [isn't nessesarely, since it will be 0,0,0]
+			cube.position.copy(new LOCATIONAR.GpsLocation(gpsTarget, gpsTarget));
+			cube.position.y = 2;
+			scene.add(cube);
+
+			let animate = () => {
+				requestAnimationFrame(animate);
+				light.position.copy(camera.position);
+				writeDebug(locProvider, dirProvider, luxProvider, camera);
+				renderer.render(scene, camera);
+			};
+
+
+			let source = controller.getSource();
+			let locProvider = controller.getLocProvider();
+			let dirProvider = controller.getDirProvider();
+
+			let debugVisible = false;
+
+			let showHideDebugView = () => {
+				debugVisible = !debugVisible;
+				if (debugVisible) {
+					document.getElementById("debugView").style.visibility = "visible";
+				} else {
+					document.getElementById("debugView").style.visibility = "hidden";
+				}
+			};
+
+			let changeTargetLat = lat => {
+				gpsTarget.x = lat;
+				locProvider.setGpsZero(gpsTarget);
+			};
+
+			let changeTargetLon = lon => {
+				gpsTarget.z = lon;
+				locProvider.setGpsZero(gpsTarget);
+			};
+
+			let setTargetToGpsCoords = () => {
+				if (locProvider.getDebug()) {
+					let loc = locProvider.getDebug().coords;
+					document.getElementById("targetLatitude").value = loc.latitude;
+					document.getElementById("targetLongitude").value = loc.longitude;
+					changeTargetLat(loc.latitude);
+					changeTargetLon(loc.longitude);
+				}
+			};
+
+			let setTargetOffset = (offsetX, offsetZ) => {
+				let lat = parseFloat(document.getElementById("targetLatitude").value);
+				let lon = parseFloat(document.getElementById("targetLongitude").value);
+				let offset = new THREE.Vector3(offsetX, 0, -offsetZ);
+
+				let pos1 = new THREE.Vector3(lat, 0, lon);
+				let pos2 = LOCATIONAR.GeoMath.coordOffsetGpsSpace(pos1, offset);
+
+				document.getElementById("targetLatitude").value = pos2.x;
+				document.getElementById("targetLongitude").value = pos2.z;
+				changeTargetLat(pos2.x);
+				changeTargetLon(pos2.z);
+			};
+
+			animate();
+
+			function writeDebug(locProvider, dirProvider, luxProvider, cameraProvider) {
+				let round = (num, digit) => {
+					let dec = Math.pow(10, digit);
+					return Math.round(num * dec) / dec;
+				};
+
+				let dir = dirProvider.getDebug();
+				let toDeg = rad => LOCATIONAR.GeoMath.radToDeg(rad);
+
+				document.getElementById("alpha").innerHTML = round(toDeg(dir.alpha), 2);
+				document.getElementById("beta").innerHTML = round(toDeg(dir.beta), 2);
+				document.getElementById("gamma").innerHTML = round(toDeg(dir.gamma), 2);
+				document.getElementById("absolute").innerHTML = dir.absolute;
+
+				if (locProvider.getDebug()) {
+					let loc = locProvider.getDebug().coords;
+					document.getElementById("latitude").innerHTML = loc.latitude;
+					document.getElementById("longitude").innerHTML = loc.longitude;
+					document.getElementById("accuracy").innerHTML = round(loc.accuracy, 2);
+
+					document.getElementById("speed").innerHTML = round(loc.speed, 3);
+					document.getElementById("heading").innerHTML = round(loc.heading, 3);
+					document.getElementById("altitude").innerHTML = round(loc.altitude, 2);
+					document.getElementById("altitudeAccuracy").innerHTML = round(loc.altitudeAccuracy, 2);
+
+					const mapLink = document.querySelector("#map-link");
+					mapLink.href = `https://www.openstreetmap.org/#map=18/${loc.latitude}/${loc.longitude}`;
+					mapLink.textContent = `Map`;
+				}
+
+				document.getElementById("illuminance").innerHTML = luxProvider.getIlluminance();
+				document.getElementById("brightness").innerHTML = luxProvider.getBrightness();
+
+				let cameraPosition = cameraProvider.position;
+				document.getElementById("distance").innerHTML = round(
+					Math.sqrt(cameraPosition.x * cameraPosition.x + cameraPosition.z * cameraPosition.z),
+					2
+				);
+				document.getElementById("offsetX").innerHTML = round(cameraPosition.x, 2);
+				document.getElementById("offsetY").innerHTML = round(cameraPosition.y, 2);
+				document.getElementById("offsetZ").innerHTML = round(cameraPosition.z, 2);
+			}
+		</script>
+	</body>
+</html>
