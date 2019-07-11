@@ -5,4 +5,12 @@ import { DirectionProvider } from "./DirectionProvider";
 import { BrightnessProvider } from "./BrightnessProvider";
 import { GpsLocation } from "./GpsLocation";
 import { GeoMath } from "./GeoMath";
-export { Source, Controller, LocationProvider, DirectionProvider, BrightnessProvider, GpsLocation, GeoMath };
+export {
+	Source,
+	Controller,
+	LocationProvider,
+	DirectionProvider,
+	BrightnessProvider,
+	GpsLocation,
+	GeoMath
+};
