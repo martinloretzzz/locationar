@@ -33,5 +33,5 @@ module.exports = {
 	externals: {
 		three: "THREE"
 	},
-	plugins: [new PrettierPlugin(), new BundleAnalyzerPlugin()] //
+	plugins: [new PrettierPlugin()] //, new BundleAnalyzerPlugin()
 };

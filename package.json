@@ -1,5 +1,5 @@
 {
-	"name": "locationar",
+	"name": "@0x4d/locationar",
 	"version": "1.0.0",
 	"description": "Location based Argumented Reality for three.js",
 	"keywords": [
@@ -29,9 +29,7 @@
 	},
 	"author": "0x4d",
 	"license": "MIT",
-	"dependencies": {
-		"three": "^0.106.2"
-	},
+	"dependencies": {},
 	"devDependencies": {
 		"husky": "^3.0.0",
 		"live-server": "^1.2.1",

@@ -8,17 +8,17 @@ Simple Location based Argumented Reality library, based on the [WebRTC](https://
 
 But you can do a lot of other things to, like:
 -building a [compass](https://0b01001101.github.io/locationar/examples/compass.html) with DeviceOrientation
--light your three.js scenes depending on the ambient light
+-light your three.js scenes depending on the ambient light[only works on chrome if flag #enable-generic-sensor-extra-classes is enabled]
 -others
 
-The lib is small, only 12.5KB/3.8KB gzipped
+The lib is small, only 20KB
 
 ## Usage
 
 LOCATIONAR is provided as an npm module:
 
 ```
-npm install locationar
+npm i @0x4d/locationar
 ```
 
 You can also download this repository and import the dist/LOCATIONAR.js file
@@ -40,4 +40,4 @@ Please see the [development guide](./DEVELOPMENT.md). If you are interested in c
 ## Acknowledgements
 
 - [three.js](https://github.com/mrdoob/three.js/) awesome 3d rendering library
-- [THREEAR](https://github.com/JamesMilnerUK/THREEAR) marker based AR libary, witch was used as a template for this project
+- [THREEAR](https://github.com/JamesMilnerUK/THREEAR) marker based AR libary, with was used as a template for this project

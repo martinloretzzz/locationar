@@ -1,21 +1,16 @@
 import { Source, SourceParameters } from "./Source";
 import { LocationProvider } from "./LocationProvider";
 import { DirectionProvider } from "./DirectionProvider";
-import { Vec3 } from "./GeoMath";
+import { Vector3Type, QuaternionType } from "./GeoMath";
 export declare class Controller {
     private source;
     private locProvider;
     private dirProvider;
-    constructor(gpsTarget: Vec3, camera: {
+    constructor(gpsTarget: Vector3Type, camera: {
         aspect: number;
         updateProjectionMatrix: () => void;
-        position: Vec3;
-        quaternion: {
-            x: number;
-            y: number;
-            z: number;
-            w: number;
-        };
+        position: Vector3Type;
+        quaternion: QuaternionType;
         cameraHeight: number;
     }, cameraHeight: number, canvas: HTMLElement, sourceParams?: Partial<SourceParameters>);
     dispose(): void;

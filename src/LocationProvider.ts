@@ -1,11 +1,11 @@
 import { GpsLocation } from "./GpsLocation";
-import { Vec3 } from "./GeoMath";
-import { Vector3 } from "three";
+import { Vector3Type } from "./GeoMath";
+import { Vector3 } from "./math/Vector3";
 
 export class LocationProvider {
-	private localPosition: Vec3 = new Vector3();
+	private localPosition: Vector3Type = new Vector3();
 	private cameraHeight: number;
-	private gpsZero: Vec3 = new Vector3();
+	private gpsZero: Vector3Type = new Vector3();
 
 	private gpsPosition: Position | undefined;
 	private useGpsAltitude: boolean = false;
@@ -19,7 +19,7 @@ export class LocationProvider {
 	};
 
 	constructor(
-		gpsZero: Vec3,
+		gpsZero: Vector3Type,
 		cameraHeight: number = 2.0,
 		callback: (locationProvider: LocationProvider) => void = locationProvider => undefined,
 		useGpsAltitude: boolean = false
@@ -62,7 +62,7 @@ export class LocationProvider {
 		this.cameraHeight = height;
 	}
 
-	public setGpsZero(gpsZero: Vec3) {
+	public setGpsZero(gpsZero: Vector3Type) {
 		this.gpsZero = gpsZero;
 	}
 

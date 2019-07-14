@@ -1,7 +1,14 @@
-export interface Vec3 {
+export interface Vector3Type {
 	x: number;
 	y: number;
 	z: number;
+}
+
+export interface QuaternionType {
+	x: number;
+	y: number;
+	z: number;
+	w: number;
 }
 
 // tslint:disable: max-classes-per-file
@@ -21,7 +28,7 @@ export class GeoMath {
 		return Math.max(Math.min(value, max), min);
 	}
 
-	public static getFlatCoordDistance(pos1: Vec3, pos2: Vec3): number {
+	public static getFlatCoordDistance(pos1: Vector3Type, pos2: Vector3Type): number {
 		const dLat = this.degToRad(pos2.x - pos1.x);
 		const dLon = this.degToRad(pos2.z - pos1.z);
 
@@ -37,7 +44,7 @@ export class GeoMath {
 	// lat[Latitude] North/South
 	// lon[Longitude] West/East
 
-	public static coordTo3dSpace(gpsPosition: Vec3, gpsZero: Vec3): Vec3 {
+	public static coordTo3dSpace(gpsPosition: Vector3Type, gpsZero: Vector3Type): Vector3Type {
 		// only approx, small distances http://www.movable-type.co.uk/scripts/latlong.html
 
 		const dLat = this.degToRad(gpsPosition.x - gpsZero.x);
@@ -50,7 +57,10 @@ export class GeoMath {
 		return { x: -distLat, y: dAlt, z: distLon };
 	}
 
-	public static coordOffsetGpsSpace(gpsPosition: Vec3, localOffset: Vec3): Vec3 {
+	public static coordOffsetGpsSpace(
+		gpsPosition: Vector3Type,
+		localOffset: Vector3Type
+	): Vector3Type {
 		// only approx, small distances http://www.movable-type.co.uk/scripts/latlong.html
 
 		const dLat = localOffset.x / GeoMath.EARTHRADIUS;

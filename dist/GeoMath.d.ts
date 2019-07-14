@@ -1,7 +1,13 @@
-export interface Vec3 {
+export interface Vector3Type {
     x: number;
     y: number;
     z: number;
+}
+export interface QuaternionType {
+    x: number;
+    y: number;
+    z: number;
+    w: number;
 }
 export declare class GeoMath {
     static EARTHRADIUS: number;
@@ -9,7 +15,7 @@ export declare class GeoMath {
     static degToRad(deg: number): number;
     static radToDeg(rad: number): number;
     static limit(value: number, min: number, max: number): number;
-    static getFlatCoordDistance(pos1: Vec3, pos2: Vec3): number;
-    static coordTo3dSpace(gpsPosition: Vec3, gpsZero: Vec3): Vec3;
-    static coordOffsetGpsSpace(gpsPosition: Vec3, localOffset: Vec3): Vec3;
+    static getFlatCoordDistance(pos1: Vector3Type, pos2: Vector3Type): number;
+    static coordTo3dSpace(gpsPosition: Vector3Type, gpsZero: Vector3Type): Vector3Type;
+    static coordOffsetGpsSpace(gpsPosition: Vector3Type, localOffset: Vector3Type): Vector3Type;
 }

@@ -1,4 +1,4 @@
-import { Vec3 } from "./GeoMath";
+import { Vector3Type } from "./GeoMath";
 export declare class LocationProvider {
     private localPosition;
     private cameraHeight;
@@ -7,11 +7,11 @@ export declare class LocationProvider {
     private useGpsAltitude;
     private watchID;
     private gpsOptions;
-    constructor(gpsZero: Vec3, cameraHeight?: number, callback?: (locationProvider: LocationProvider) => void, useGpsAltitude?: boolean);
-    getLocation(): Vec3;
+    constructor(gpsZero: Vector3Type, cameraHeight?: number, callback?: (locationProvider: LocationProvider) => void, useGpsAltitude?: boolean);
+    getLocation(): Vector3Type;
     getDebug(): Position | undefined;
     setCameraHeight(height: number): void;
-    setGpsZero(gpsZero: Vec3): void;
+    setGpsZero(gpsZero: Vector3Type): void;
     dispose(): void;
     private updatePosition;
     private onLocationError;

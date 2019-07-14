@@ -65,6 +65,17 @@
 				/>
 				<br /><br />
 
+				<div><b>Camera:</b></div>
+				<div>FOV: <input
+					type="number"
+					value="60"
+					name="fov"
+					id="fov"
+					onchange="changeFov(this.value)"
+					style="border:none; background-color: transparent;"
+				/></div>
+				<br />
+
 				<div><b>DeviceOrientation:</b></div>
 				<div>Y[alpha]: <span id="alpha"></span></div>
 				<div>X[beta]:&nbsp; <span id="beta"></span></div>
@@ -112,7 +123,7 @@
 			// Camera aspecto, not screen, will be filled in when passed to LOCATIONAR.Source
 			let camera = new THREE.PerspectiveCamera(
 				74.53,
-				4/3, 
+				4/3, // swap at orientationchange?
 				0.1,
 				1000
 			);
@@ -153,9 +164,9 @@
 			let rotTarget = 25; // deg
 
 			// Set up LOCATIONAR
-			let controller = new LOCATIONAR.Controller(gpsTarget, camera, 1.6, renderer.domElement);
+			let controller = new LOCATIONAR.Controller(gpsTarget, camera, 3+1.6, renderer.domElement);
 
-			// chrome flag #enable-generic-sensor-extra-classes need to be enabled for AMbientlightSensor to work
+			// chrome flag #enable-generic-sensor-extra-classes need to be enabled for AmbientlightSensor to work
 			let luxProvider = new LOCATIONAR.BrightnessProvider(lux => {
 				//light.power = lux.getLightPower(2);
 			});
@@ -194,6 +205,11 @@
 					document.getElementById("debugView").style.visibility = "hidden";
 				}
 			};
+
+			let changeFov = (fov) => {
+				camera.fov = fov;
+				camera.updateProjectionMatrix();
+			}
 
 			let changeTargetLat = lat => {
 				gpsTarget.x = lat;

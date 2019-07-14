@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>GpsLocation | @0x4d/locationar</title>
+	<title>Vector3 | @0x4d/locationar</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="gpslocation.html">GpsLocation</a>
+					<a href="vector3.html">Vector3</a>
 				</li>
 			</ul>
-			<h1>Class GpsLocation</h1>
+			<h1>Class Vector3</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">GpsLocation</span>
+						<span class="target">Vector3</span>
 					</li>
 				</ul>
 			</section>
@@ -87,15 +87,15 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-external"><a href="gpslocation.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-external"><a href="vector3.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="gpslocation.html#x" class="tsd-kind-icon">x</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="gpslocation.html#y" class="tsd-kind-icon">y</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="gpslocation.html#z" class="tsd-kind-icon">z</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="vector3.html#x" class="tsd-kind-icon">x</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="vector3.html#y" class="tsd-kind-icon">y</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="vector3.html#z" class="tsd-kind-icon">z</a></li>
 							</ul>
 						</section>
 					</div>
@@ -107,25 +107,28 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Gps<wbr>Location<span class="tsd-signature-symbol">(</span>gpsPosition<span class="tsd-signature-symbol">: </span><a href="../interfaces/vector3type.html" class="tsd-signature-type">Vector3Type</a>, gpsZero<span class="tsd-signature-symbol">: </span><a href="../interfaces/vector3type.html" class="tsd-signature-type">Vector3Type</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="gpslocation.html" class="tsd-signature-type">GpsLocation</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Vector3<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, z<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="vector3.html" class="tsd-signature-type">Vector3</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/04e94c0/src/GpsLocation.ts#L6">GpsLocation.ts:6</a></li>
+									<li>Defined in math/Vector3.ts:6</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>gpsPosition: <a href="../interfaces/vector3type.html" class="tsd-signature-type">Vector3Type</a></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> x: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
 								</li>
 								<li>
-									<h5>gpsZero: <a href="../interfaces/vector3type.html" class="tsd-signature-type">Vector3Type</a></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> y: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> z: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="gpslocation.html" class="tsd-signature-type">GpsLocation</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="vector3.html" class="tsd-signature-type">Vector3</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -139,7 +142,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/vector3type.html">Vector3Type</a>.<a href="../interfaces/vector3type.html#x">x</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/04e94c0/src/GpsLocation.ts#L4">GpsLocation.ts:4</a></li>
+							<li>Defined in math/Vector3.ts:4</li>
 						</ul>
 					</aside>
 				</section>
@@ -150,7 +153,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/vector3type.html">Vector3Type</a>.<a href="../interfaces/vector3type.html#y">y</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/04e94c0/src/GpsLocation.ts#L5">GpsLocation.ts:5</a></li>
+							<li>Defined in math/Vector3.ts:5</li>
 						</ul>
 					</aside>
 				</section>
@@ -161,7 +164,7 @@
 					<aside class="tsd-sources">
 						<p>Implementation of <a href="../interfaces/vector3type.html">Vector3Type</a>.<a href="../interfaces/vector3type.html#z">z</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/04e94c0/src/GpsLocation.ts#L6">GpsLocation.ts:6</a></li>
+							<li>Defined in math/Vector3.ts:6</li>
 						</ul>
 					</aside>
 				</section>
@@ -189,36 +192,36 @@
 					<li class=" tsd-kind-class tsd-is-external">
 						<a href="geomath.html" class="tsd-kind-icon">Geo<wbr>Math</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class tsd-is-external">
+					<li class=" tsd-kind-class tsd-is-external">
 						<a href="gpslocation.html" class="tsd-kind-icon">Gps<wbr>Location</a>
-						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-								<a href="gpslocation.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
-								<a href="gpslocation.html#x" class="tsd-kind-icon">x</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
-								<a href="gpslocation.html#y" class="tsd-kind-icon">y</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
-								<a href="gpslocation.html#z" class="tsd-kind-icon">z</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-is-external">
 						<a href="locationprovider.html" class="tsd-kind-icon">Location<wbr>Provider</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
 						<a href="source.html" class="tsd-kind-icon">Source</a>
 					</li>
-					<li class=" tsd-kind-class tsd-is-external">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class tsd-is-external">
 						<a href="vector3.html" class="tsd-kind-icon">Vector3</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
+								<a href="vector3.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
+								<a href="vector3.html#x" class="tsd-kind-icon">x</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
+								<a href="vector3.html#y" class="tsd-kind-icon">y</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
+								<a href="vector3.html#z" class="tsd-kind-icon">z</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="../interfaces/quaterniontype.html" class="tsd-kind-icon">Quaternion<wbr>Type</a>
 					</li>

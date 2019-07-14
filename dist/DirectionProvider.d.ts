@@ -5,7 +5,7 @@
  *
  * W3C Device Orientation control (http://w3c.github.io/deviceorientation/spec-source-orientation.html)
  */
-import { Quaternion } from "three";
+import { Quaternion } from "./math/Quaternion";
 export declare class DirectionProvider {
     private alphaOffset;
     private enabled;
@@ -14,7 +14,6 @@ export declare class DirectionProvider {
     private targetQuanternion;
     private screenOrientation;
     private zee;
-    private euler;
     private q0;
     private q1;
     private onDeviceOrientationChangeEvent;
@@ -27,7 +26,10 @@ export declare class DirectionProvider {
         gamma: number;
         absolute: boolean;
     };
-    updateDeviceOrientation(device: DeviceOrientationEvent): void;
+    updateDeviceOrientation(device: DeviceOrientationEvent & {
+        webkitCompassHeading?: number;
+        webkitCompassAccuracy?: number;
+    }): void;
     dispose(): void;
     private setObjectQuaternion;
     private connect;
