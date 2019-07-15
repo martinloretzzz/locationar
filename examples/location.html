@@ -129,6 +129,18 @@
 				<div>Map: </b><a id="map-link" target="_blank"></a></div>
 
 				<br />
+				<div><b>Camera Position:</b></div>
+				<div>Distance: <span id="distance"></span></div>
+				<div>OffsetX: <span id="offsetX"></span></div>
+				<div>OffsetY: <span id="offsetY"></span></div>
+				<div>OffsetZ: <span id="offsetZ"></span></div>
+
+				<br />
+				<div><b>Light:</b></div>
+				<div>Illuminance: <span id="illuminance"></span></div>
+				<div>Brightness: <span id="brightness"></span></div>
+
+				<br />
 				<div><b>Other Location info[only if GPS on]:</b></div>
 				<div>Speed: <span id="speed"></span></div>
 				<div>Heading: <span id="heading"></span></div>
@@ -136,17 +148,9 @@
 				<div>AltitudeAccuracy: <span id="altitudeAccuracy"></span></div>
 
 				<br />
-
-				<div><b>Light:</b></div>
-				<div>Illuminance: <span id="illuminance"></span></div>
-				<div>Brightness: <span id="brightness"></span></div>
-
-				<br />
-				<div><b>Camera Position:</b></div>
-				<div>Distance: <span id="distance"></span></div>
-				<div>OffsetX: <span id="offsetX"></span></div>
-				<div>OffsetY: <span id="offsetY"></span></div>
-				<div>OffsetZ: <span id="offsetZ"></span></div>
+				<div><b>Model:</b></div>
+				Cube <input type="checkbox" id="modelCube" onclick="setModel()" checked><br />
+				House <input type="checkbox" id="modelHouse" onclick="setModel()"><br />
 
 				<div><span style="color:red;" id="errors"></span></div>
 			</div>
@@ -181,7 +185,8 @@
 			scene.add(directionalLight);
 
 			let renderer = new THREE.WebGLRenderer({
-				alpha: true
+				alpha: true,
+				antialias: true
 			});
 			renderer.setClearColor(new THREE.Color("lightgrey"), 0);
 			renderer.setSize((window.innerHeight / 4) * 3, window.innerHeight);
@@ -205,7 +210,6 @@
 			});*/
 
 			let gpsTarget = new THREE.Vector3(targetLat, 0, targetLon); // Zero position of local coord system
-			let rotTarget = 25; // deg
 
 			// Set up LOCATIONAR
 			let controller = new LOCATIONAR.Controller(gpsTarget, camera, 3+1.6, renderer.domElement);
@@ -217,15 +221,15 @@
 
 			// End of LOCATIONAR
 
-			/*let geometry = new THREE.BoxGeometry(4, 4, 4, 10, 10);
+			let geometry = new THREE.BoxGeometry(4, 4, 4, 10, 10);
 			let material = new THREE.MeshPhongMaterial({ color: 0xff0000 });
 			let cube = new THREE.Mesh(geometry, material);
 			// Use the GeoMath to convert rad to degree and the other way around
-			cube.rotation.set(0, LOCATIONAR.GeoMath.degToRad(rotTarget), 0);
+			cube.rotation.set(0, 0, 0);
 			// Set position with gps coord [isn't nessesarely, since it will be 0,0,0]
 			cube.position.copy(new LOCATIONAR.GpsLocation(gpsTarget, gpsTarget));
 			cube.position.y = 2;
-			scene.add(cube);*/
+			scene.add(cube);
 
 			let gltf = undefined;
 			let loader = new THREE.GLTFLoader();
@@ -233,6 +237,7 @@
 				'data/models/House.glb',
 				(gltfScene) => {
 					gltf = gltfScene;
+					gltfScene.scene.visible = false;
 					scene.add(gltfScene.scene);
 				},
 			);
@@ -276,12 +281,20 @@
 					rot = Math.round(rot);
 					rot = (rot === 360) ? 0 : rot;
 					gltf.scene.rotation.set(0, LOCATIONAR.GeoMath.degToRad(rot), 0);
+					cube.rotation.set(0, LOCATIONAR.GeoMath.degToRad(rot), 0);
 					document.getElementById("targetRotation").value = rot;
 				}
 			}
 
+			let setModel = () => {
+				cube.visible = document.getElementById("modelCube").checked;
+				if(gltf) {
+					gltf.scene.visible = document.getElementById("modelHouse").checked;
+				}
+			}
+
 			let setDevicePixelRatio = () => {
-				var checkBox = document.getElementById("devicePixelRatio");
+				let checkBox = document.getElementById("devicePixelRatio");
   				if (checkBox.checked === true) {
 					renderer.setPixelRatio(window.devicePixelRatio);
 				}
