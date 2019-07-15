@@ -3,8 +3,11 @@ export declare class LocationProvider {
     private localPosition;
     private cameraHeight;
     private gpsZero;
+    private lastLocalPositions;
+    private lastPositionTimestamp;
     private gpsPosition;
     private useGpsAltitude;
+    private callback;
     private watchID;
     private gpsOptions;
     constructor(gpsZero: Vector3Type, cameraHeight?: number, callback?: (locationProvider: LocationProvider) => void, useGpsAltitude?: boolean);
@@ -14,5 +17,6 @@ export declare class LocationProvider {
     setGpsZero(gpsZero: Vector3Type): void;
     dispose(): void;
     private updatePosition;
+    private interpolate;
     private onLocationError;
 }

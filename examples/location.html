@@ -240,10 +240,10 @@
 			let animate = () => {
 				requestAnimationFrame(animate);
 				light.position.copy(camera.position);
+				locProvider.updatePosition();
 				writeDebug(locProvider, dirProvider, luxProvider, camera);
 				renderer.render(scene, camera);
 			};
-
 
 			let source = controller.getSource();
 			let locProvider = controller.getLocProvider();
