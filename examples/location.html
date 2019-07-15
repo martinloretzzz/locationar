@@ -6,6 +6,7 @@
 			content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
 		/>
 		<script src="lib/three.106.min.js"></script>
+		<script src="lib/GLTFLoader.js"></script>
 		<script src="../dist/LOCATIONAR.js"></script>
 		<title>LOCATIONAR Debug View</title>
 		<script>
@@ -13,6 +14,13 @@
 			// prettier-ignore
 			window.addEventListener("error", function(event) {alert("ERROR: " + event.message + " at " + event.filename + " : " + event.lineno + " : " + event.colno);});
 		</script>
+		<style>
+		.form {
+			border:none;
+			border-bottom: 1px solid black;
+			background-color: transparent;
+		}
+		</style>
 	</head>
 
 	<body style="margin : 0px; overflow:hidden; font-family: Monospace;">
@@ -22,7 +30,7 @@
 			</button>
 			<div
 				id="debugView"
-				style="visibility: hidden; background-color: rgba(138, 138, 138, 0.4); padding:10px;"
+				style="visibility: hidden; overflow: auto; max-height: 70vh; background-color: rgba(138, 138, 138, 0.4); padding:10px;"
 			>
 				<div>
 					<b>Target</b>
@@ -52,7 +60,8 @@
 					name="targetLatitude"
 					id="targetLatitude"
 					onchange="changeTargetLat(this.value)"
-					style="border:none; background-color: transparent;"
+					class="form"
+					style="width:128px"
 				/><br />
 				Longitude:
 				<input
@@ -61,8 +70,23 @@
 					name="targetLongitude"
 					id="targetLongitude"
 					onchange="changeTargetLon(this.value)"
-					style="border:none; background-color: transparent;"
+					class="form"
+					style="width:128px"
 				/>
+				<br />
+				Rotation[°]:
+				<input
+					type="number"
+					value="0"
+					name="targetRotation"
+					id="targetRotation"
+					onchange="changeTargetRotation(this.value, 0)"
+					class="form"
+					style="width:32px"
+				/>
+				<button onclick="changeTargetRotation(undefined, 90)" style="background-color: transparent;">
+					+90°
+				</button>
 				<br /><br />
 
 				<div><b>Camera:</b></div>
@@ -72,8 +96,23 @@
 					name="fov"
 					id="fov"
 					onchange="changeFov(this.value)"
-					style="border:none; background-color: transparent;"
+					class="form"
+					style="width:32px"
 				/></div>
+				Camera Height:
+				<input
+					type="number"
+					value="1.8"
+					name="cameraHeight"
+					id="cameraHeight"
+					onchange="changeCameraHeight(this.value)"
+					class="form"
+					style="width:32px"
+				/>
+				<br />
+				
+				DevicePixelRatio <input type="checkbox" id="devicePixelRatio" onclick="setDevicePixelRatio()"><br />
+
 				<br />
 
 				<div><b>DeviceOrientation:</b></div>
@@ -136,11 +175,16 @@
 
 			scene.add(new THREE.AmbientLight(0x404040));
 
+			var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
+			light.position.set(4, 20, 4);
+			light.lookAt(0,0,0);
+			scene.add(directionalLight);
+
 			let renderer = new THREE.WebGLRenderer({
 				alpha: true
 			});
 			renderer.setClearColor(new THREE.Color("lightgrey"), 0);
-			renderer.setSize(window.innerWidth, window.innerHeight);
+			renderer.setSize((window.innerHeight / 4) * 3, window.innerHeight);
 			renderer.setPixelRatio(1); // window.devicePixelRatio
 			renderer.domElement.style.position = "absolute";
 			renderer.domElement.style.top = "0px";
@@ -173,7 +217,7 @@
 
 			// End of LOCATIONAR
 
-			let geometry = new THREE.BoxGeometry(4, 4, 4, 10, 10);
+			/*let geometry = new THREE.BoxGeometry(4, 4, 4, 10, 10);
 			let material = new THREE.MeshPhongMaterial({ color: 0xff0000 });
 			let cube = new THREE.Mesh(geometry, material);
 			// Use the GeoMath to convert rad to degree and the other way around
@@ -181,7 +225,17 @@
 			// Set position with gps coord [isn't nessesarely, since it will be 0,0,0]
 			cube.position.copy(new LOCATIONAR.GpsLocation(gpsTarget, gpsTarget));
 			cube.position.y = 2;
-			scene.add(cube);
+			scene.add(cube);*/
+
+			let gltf = undefined;
+			let loader = new THREE.GLTFLoader();
+			loader.load(
+				'data/models/House.glb',
+				(gltfScene) => {
+					gltf = gltfScene;
+					scene.add(gltfScene.scene);
+				},
+			);
 
 			let animate = () => {
 				requestAnimationFrame(animate);
@@ -209,6 +263,31 @@
 			let changeFov = (fov) => {
 				camera.fov = fov;
 				camera.updateProjectionMatrix();
+			}
+
+			let changeCameraHeight = (height) => {
+				locProvider.setCameraHeight(height);
+			}
+
+			let changeTargetRotation = (set, add) => {
+				if(gltf) {
+					let rot = (set) ? set : LOCATIONAR.GeoMath.radToDeg(gltf.scene.rotation.y);
+					rot = (rot+add+360) % 360;
+					rot = Math.round(rot);
+					rot = (rot === 360) ? 0 : rot;
+					gltf.scene.rotation.set(0, LOCATIONAR.GeoMath.degToRad(rot), 0);
+					document.getElementById("targetRotation").value = rot;
+				}
+			}
+
+			let setDevicePixelRatio = () => {
+				var checkBox = document.getElementById("devicePixelRatio");
+  				if (checkBox.checked === true) {
+					renderer.setPixelRatio(window.devicePixelRatio);
+				}
+				else {
+					renderer.setPixelRatio(1);
+				}
 			}
 
 			let changeTargetLat = lat => {

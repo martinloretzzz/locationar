@@ -27,6 +27,15 @@ You can also download this repository and import the dist/LOCATIONAR.js file
 
 Open https://0b01001101.github.io/locationar/ and set a target position
 
+## Browser compability
+
+✔️Chrome
+❌Samsung Internet[Scaling doesn't work]
+❌Firefox [no absolute compass]
+❌UC[Source doesn't work]
+❌Opera
+❔Safari[can't test on apple devices]
+
 ## Documentation and Examples
 
 - [Docs](https://0b01001101.github.io/locationar/docs)

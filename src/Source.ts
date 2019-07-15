@@ -12,16 +12,23 @@ export interface SourceParameters {
 	deviceId: any;
 	sourceWidth: number;
 	sourceHeight: number;
-	displayWidth: number;
-	displayHeight: number;
+	// displayWidth: number;
+	// displayHeight: number;
 }
 
 export class Source {
-	public domElement: HTMLImageElement | HTMLVideoElement | undefined;
+	public domElement: HTMLVideoElement | undefined;
 	private parameters: SourceParameters;
+	private stream: MediaStream | undefined;
 
 	constructor(parameters: Partial<SourceParameters>) {
 		// handle default parameters
+
+		const largeScreenSize =
+			Math.max(window.innerWidth, window.innerHeight) * window.devicePixelRatio;
+
+		const smallScreenSize = (largeScreenSize / 4) * 3;
+
 		this.parameters = {
 			parent: document.body,
 			canvas: null, // 0x4d
@@ -33,11 +40,11 @@ export class Source {
 			facingMode: "environment",
 
 			// resolution of at which we initialize in the source image
-			sourceWidth: 640,
-			sourceHeight: 480,
+			sourceWidth: largeScreenSize, // 640
+			sourceHeight: smallScreenSize // 480,
 			// resolution displayed for the source
-			displayWidth: 640,
-			displayHeight: 480
+			// displayWidth: 640,
+			// displayHeight: 480
 		};
 
 		this.setParameters(parameters);
@@ -58,8 +65,10 @@ export class Source {
 		const that = this;
 		this.initialize().then(() => {
 			const params = that.parameters;
-			if (params.camera !== null) {
-				params.camera.aspect = params.sourceWidth / params.sourceHeight;
+			if (params.camera !== null && this.stream && this.domElement) {
+				// this.stream.getVideoTracks()[0].getSettings().aspectRatio;
+				// doesn't really work, for now we only have a video resolution of 4/4
+				params.camera.aspect = 4 / 3;
 				params.camera.updateProjectionMatrix();
 			}
 
@@ -122,7 +131,7 @@ export class Source {
 		let sourceWidth = 0;
 
 		// compute sourceWidth, sourceHeight
-		if (this.domElement instanceof HTMLVideoElement) {
+		if (this.domElement) {
 			sourceWidth = this.domElement.videoWidth;
 			sourceHeight = this.domElement.videoHeight;
 		}
@@ -185,8 +194,8 @@ export class Source {
 		domElement.setAttribute("autoplay", "");
 		domElement.setAttribute("muted", "");
 		domElement.setAttribute("playsinline", "");
-		domElement.style.width = this.parameters.displayWidth + "px";
-		domElement.style.height = this.parameters.displayHeight + "px";
+		// domElement.style.width = this.parameters.displayWidth + "px";
+		// domElement.style.height = this.parameters.displayHeight + "px";
 
 		// check API is available
 		if (
@@ -206,6 +215,8 @@ export class Source {
 			return;
 		}
 
+		const that = this;
+
 		// get available devices
 		navigator.mediaDevices
 			.enumerateDevices()
@@ -219,7 +230,9 @@ export class Source {
 						},
 						height: {
 							ideal: this.parameters.sourceHeight
-						}
+						},
+						resizeMode: "none",
+						aspectRatio: { ideal: 4 / 3 }
 					}
 				};
 
@@ -234,6 +247,7 @@ export class Source {
 					.getUserMedia(userMediaConstraints)
 					.then(function success(stream) {
 						// set the .src of the domElement
+						that.stream = stream;
 						domElement.srcObject = stream;
 						// to start the video, when it is possible to start it only on userevent. like in android
 						document.body.addEventListener("click", () => {
@@ -260,7 +274,7 @@ export class Source {
 			this.domElement.style.position = "absolute";
 			this.domElement.style.top = "0px";
 			this.domElement.style.left = "0px";
-			this.domElement.style.zIndex = "-2";
+			this.domElement.style.zIndex = "-1";
 		}
 	}
 

@@ -28,11 +28,12 @@
 			scene.add(new THREE.AmbientLight(0x404040));
 
 			let renderer = new THREE.WebGLRenderer({
-				alpha: true
+				alpha: true,
+				antialias: true
 			});
 			renderer.setClearColor(new THREE.Color("lightgrey"), 0);
-			renderer.setSize(window.innerWidth, window.innerHeight);
-			renderer.setPixelRatio(1); // window.devicePixelRatio
+			renderer.setSize((window.innerHeight / 4) * 3, window.innerHeight);
+			renderer.setPixelRatio(window.devicePixelRatio); // 1/window.devicePixelRatio
 			renderer.domElement.style.position = "absolute";
 			renderer.domElement.style.top = "0px";
 			renderer.domElement.style.left = "0px";
@@ -53,7 +54,7 @@
 					font: font,
 					size: 100,
 					height: 20,
-					curveSegments: 3
+					curveSegments: 6
 				};
 
 				let addLabelWithPosition = (geometry, material, position, rotation) => {

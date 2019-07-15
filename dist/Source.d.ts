@@ -14,12 +14,11 @@ export interface SourceParameters {
     deviceId: any;
     sourceWidth: number;
     sourceHeight: number;
-    displayWidth: number;
-    displayHeight: number;
 }
 export declare class Source {
-    domElement: HTMLImageElement | HTMLVideoElement | undefined;
+    domElement: HTMLVideoElement | undefined;
     private parameters;
+    private stream;
     constructor(parameters: Partial<SourceParameters>);
     initialize(): Promise<unknown>;
     dispose(): void;
