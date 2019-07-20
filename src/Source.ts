@@ -67,17 +67,17 @@ export class Source {
 			const params = that.parameters;
 			if (params.camera !== null && this.stream && this.domElement) {
 				// this.stream.getVideoTracks()[0].getSettings().aspectRatio;
-				// doesn't really work, for now we only have a video resolution of 4/4
+				// doesn't really work, for now we only have a video resolution of 4/3
 				params.camera.aspect = 4 / 3;
 				params.camera.updateProjectionMatrix();
 			}
 
 			window.addEventListener("resize", () => {
-				if (params.canvas && params.onResize) {
+				if (params.onResize) {
 					params.onResize(that, params.canvas);
 				}
 			});
-			if (params.canvas && params.onResize) {
+			if (params.onResize) {
 				params.onResize(that, params.canvas);
 			}
 		});

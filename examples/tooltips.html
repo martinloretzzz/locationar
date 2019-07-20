@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta
+			name="viewport"
+			content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+		/>
+
+		<script
+			src="https://code.jquery.com/jquery-1.12.4.min.js"
+			integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+			crossorigin="anonymous"
+		></script>
+
+		<script src="lib/three.106.min.js"></script>
+		<script src="../dist/LOCATIONAR.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="lib/tooltipster/css/tooltipster.bundle.min.css" />
+		<link rel="stylesheet" type="text/css" href="lib/tooltipster/css/tooltipster-shadow.min.css" />
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="lib/tooltipster/css/tooltipster-shadow-customized.css"
+		/>
+		<script type="text/javascript" src="lib/tooltipster/js/tooltipster.bundle.min.js"></script>
+
+		<title>AR Tooltips</title>
+		<script>
+			// Bind window error for error handling
+			window.addEventListener("error", function(event) {alert("ERROR: " + event.message + " at " + event.filename + " : " + event.lineno + " : " + event.colno);}); // prettier-ignore
+		</script>
+		<style>
+			.tooltipPoint {
+				position: absolute;
+				width: 2px;
+				height: 2px;
+			}
+			.tooltipIcon {
+				padding: 4px;
+			}
+			.tooltipDescription {
+				padding: 4px;
+				padding-right: 10px;
+			}
+			.tooltipTextRight {
+				float: right;
+			}
+		</style>
+	</head>
+	<body style="margin : 0px; overflow:hidden; font-family: Monospace;">
+		<br /><br /><br /><br />
+		<div
+			id="tooltipAirport"
+			class="tooltipPoint"
+			data-tooltip-content="#tooltipAirportContent"
+		></div>
+		<div id="tooltipTrain" class="tooltipPoint" data-tooltip-content="#tooltipTrainContent"></div>
+		<div id="tooltipBus" class="tooltipPoint" data-tooltip-content="#tooltipBusContent"></div>
+
+		<div class="tooltip_templates">
+			<div id="tooltipAirportContent" style="display: flex;">
+				<div class="tooltipIcon" style="background-color:steelblue;">
+					<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+						<path
+							style="fill:#ffffff;"
+							d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"
+						/>
+						<path d="M0 0h24v24H0z" fill="none" />
+					</svg>
+				</div>
+				<div class="tooltipDescription">
+					<b>International Airport</b><br />
+					<span class="tooltipTextRight">1.8km</span>
+				</div>
+			</div>
+			<div id="tooltipTrainContent" style="display: flex;">
+				<div class="tooltipIcon" style="background-color:limegreen;">
+					<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+						<path
+							style="fill:#ffffff;"
+							d="M12 2c-4 0-8 .5-8 4v9.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h2.23l2-2H14l2 2h2v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-3.58-4-8-4zM7.5 17c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm3.5-7H6V6h5v4zm2 0V6h5v4h-5zm3.5 7c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"
+						/>
+						<path fill="none" d="M0 0h24v24H0V0z" />
+					</svg>
+				</div>
+				<div class="tooltipDescription">
+					<b>Train Station</b><br />
+					<span class="tooltipTextRight">500m</span>
+				</div>
+			</div>
+			<div id="tooltipBusContent" style="display: flex;">
+				<div class="tooltipIcon" style="background-color:orange;">
+					<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+						<path d="M0 0h24v24H0z" fill="none" />
+						<path
+							style="fill:#ffffff;"
+							d="M4 16c0 .88.39 1.67 1 2.22V20c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h8v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"
+						/>
+					</svg>
+				</div>
+				<div class="tooltipDescription">
+					<b>Bus Stop</b><br />
+					<span class="tooltipTextRight">200m</span>
+				</div>
+			</div>
+		</div>
+		<script>
+			$(document).ready(() => {
+				$.tooltipster.setDefaults({
+					animation: "fade",
+					theme: ["tooltipster-shadow"],
+					contentAsHTML: true,
+					interactive: true
+				});
+
+				// use the coords given in the gps attribute, not the ones in the pos attributes
+				let useGpsCoords = false;
+
+				// edit the gps attributes and set useGpsCoords to true to test it with real locations
+				let tooltip1 = {
+					element: "tooltipAirport",
+					gps: new THREE.Vector3(51.5074, 0, 0.1278),
+					pos: new THREE.Vector3(10, 0, 0)
+				};
+				let tooltip2 = {
+					element: "tooltipTrain",
+					gps: new THREE.Vector3(51.5074, 0, 0.1278),
+					pos: new THREE.Vector3(0, 2, -10)
+				};
+				let tooltip3 = {
+					element: "tooltipBus",
+					gps: new THREE.Vector3(51.5074, 0, 0.1278),
+					pos: new THREE.Vector3(7, 4, -7)
+				};
+
+				let tooltips = [tooltip1, tooltip2, tooltip3];
+
+				for (let tooltip of tooltips) {
+					const element = $("#" + tooltip.element);
+					if (element) {
+						element.tooltipster({});
+						element.tooltipster("open");
+						element.tooltipster("close");
+					}
+				}
+
+				// The camera isn't really needed in this example, but for simplicity I use three.js
+				// functions in toScreenPosition, you can make it work without three.js [about 500KB less js]
+				let camera = new THREE.PerspectiveCamera(60, 3 / 4, 0.1, 1000);
+
+				// init source and make camera move with DirectionProvider
+				let source = new LOCATIONAR.Source({ camera });
+				let locProvider = new LOCATIONAR.LocationProvider(new THREE.Vector3(0, 0, 0), 4.0, loc => {
+					camera.position.set(0, 0, 0);
+					if (useGpsCoords) {
+						let coords = locProvider.getDebug().coords;
+						for (let tooltip of tooltips) {
+							tooltip.pos = new THREE.Vector3().copy(
+								new LOCATIONAR.GpsLocation(
+									tooltip.gps,
+									new THREE.Vector3(coords.latitude, 1.8, coords.longitude)
+								)
+							);
+							// invert the x coord, I don't really know why, maybe northern hemisphere
+							tooltip.pos.x = -tooltip.pos.x;
+						}
+					}
+				});
+				let dirProvider = new LOCATIONAR.DirectionProvider(dir => {
+					camera.quaternion.copy(dir.getDirection());
+				});
+
+				let animate = () => {
+					requestAnimationFrame(animate);
+					updateTooltips();
+				};
+
+				let updateTooltips = () => {
+					var vectorCamera = new THREE.Vector3(0, 0, -1);
+					vectorCamera.applyQuaternion(camera.quaternion);
+					vectorCamera.normalize();
+
+					for (let tooltip of tooltips) {
+						const element = $("#" + tooltip.element);
+						if (element) {
+							var vectorCameraObject = tooltip.pos.sub(camera.position).normalize();
+
+							let dot = vectorCamera.dot(vectorCameraObject);
+							const screenPos = toScreenPosition(tooltip.pos, camera);
+
+							element.css("left", screenPos.x + "px");
+							element.css("top", screenPos.y - element.height() / 2 + "px");
+							element.tooltipster("reposition");
+
+							const inWidth = screenPos.x > 0 && screenPos.x < window.innerWidth;
+							const inHeight = screenPos.y > 0 && screenPos.y < window.innerHeight;
+							if (dot > 0 && inWidth && inHeight) {
+								element.tooltipster("open");
+							} else {
+								element.tooltipster("close");
+							}
+						}
+					}
+				};
+
+				let toScreenPosition = (pos, camera) => {
+					if (!source.domElement) return { x: -1, y: -1 };
+
+					const widthHalf = 0.5 * source.domElement.offsetWidth;
+					const heightHalf = 0.5 * source.domElement.offsetHeight;
+					const offsetLeft = source.domElement.offsetLeft;
+					const offsetTop = source.domElement.offsetTop;
+
+					camera.updateMatrixWorld();
+
+					let vector = new THREE.Vector4(pos.x, pos.y, pos.z, pos.w)
+						.applyMatrix4(camera.matrixWorldInverse)
+						.applyMatrix4(camera.projectionMatrix);
+
+					let screen = {
+						x: offsetLeft + vector.x * widthHalf + widthHalf,
+						y: offsetTop + -vector.y * heightHalf + heightHalf
+					};
+
+					return screen;
+				};
+
+				animate();
+			});
+		</script>
+	</body>
+</html>

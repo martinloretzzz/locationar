@@ -370,7 +370,7 @@
 				}
 
 				document.getElementById("illuminance").innerHTML = luxProvider.getIlluminance();
-				document.getElementById("brightness").innerHTML = luxProvider.getBrightness();
+				document.getElementById("brightness").innerHTML = round(luxProvider.getBrightness(),3);
 
 				let cameraPosition = cameraProvider.position;
 				document.getElementById("distance").innerHTML = round(

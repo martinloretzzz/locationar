@@ -3,7 +3,6 @@ export declare class LocationProvider {
     private localPosition;
     private cameraHeight;
     private gpsZero;
-    private lastLocalPositions;
     private lastPositionTimestamp;
     private gpsPosition;
     private useGpsAltitude;
@@ -17,6 +16,5 @@ export declare class LocationProvider {
     setGpsZero(gpsZero: Vector3Type): void;
     dispose(): void;
     private updatePosition;
-    private interpolate;
     private onLocationError;
 }

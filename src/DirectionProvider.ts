@@ -12,8 +12,6 @@ import { Quaternion } from "./math/Quaternion";
 import { Vector3 } from "./math/Vector3";
 
 export class DirectionProvider {
-	// this.object.rotation.reorder("YXZ");
-
 	private alphaOffset = GeoMath.degToRad(-90); // radians
 
 	private enabled = true;

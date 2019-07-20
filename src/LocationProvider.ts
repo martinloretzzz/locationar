@@ -1,19 +1,23 @@
 import { GpsLocation } from "./GpsLocation";
-import { GeoMath, Vector3Type } from "./GeoMath";
+import { Vector3Type } from "./GeoMath";
 import { Vector3 } from "./math/Vector3";
+
+// import KalmanFilter from "./kalmanjs";
 
 export class LocationProvider {
 	private localPosition: Vector3Type = new Vector3();
 	private cameraHeight: number;
 	private gpsZero: Vector3Type = new Vector3();
 
-	private lastLocalPositions: Array<{ time: number; pos: Vector3Type }> = [];
+	// private lastLocalPositions: Array<{ time: number; pos: Vector3Type }> = [];
 	private lastPositionTimestamp: number = 0;
 
 	private gpsPosition: Position | undefined;
 	private useGpsAltitude: boolean = false;
 
 	private callback: (locationProvider: LocationProvider) => void;
+
+	// private filterLong = new KalmanFilter();
 
 	private watchID: number | undefined;
 	private gpsOptions = {
@@ -81,7 +85,10 @@ export class LocationProvider {
 		if (this.gpsPosition) {
 			if (this.gpsPosition.timestamp !== this.lastPositionTimestamp) {
 				const coords = this.gpsPosition.coords;
-				if (coords.longitude && coords.latitude) {
+				if (coords.latitude && coords.longitude) {
+					// const lon = this.filterLong.filter(coords.longitude);
+					// const lat = this.filterLong.filter(coords.latitude);
+
 					const altitude = coords.altitude ? coords.altitude : 0; // TODO not all positions contain altitude
 					const height = this.useGpsAltitude && coords.altitude ? altitude : this.cameraHeight;
 					const gps = new Vector3(coords.latitude, height, coords.longitude);
@@ -90,28 +97,28 @@ export class LocationProvider {
 
 					this.lastPositionTimestamp = this.gpsPosition.timestamp;
 
-					this.lastLocalPositions.push({
+					/*this.lastLocalPositions.push({
 						time: this.gpsPosition.timestamp,
 						pos: this.localPosition
 					});
 					if (this.lastLocalPositions.length > 2) {
 						this.lastLocalPositions.shift();
-					}
+					}*/
 				}
 			}
 		}
 
-		if (this.lastLocalPositions.length >= 2) {
+		/*if (this.lastLocalPositions.length >= 2) {
 			this.localPosition = this.interpolate(
 				this.lastLocalPositions[this.lastLocalPositions.length - 2],
 				this.lastLocalPositions[this.lastLocalPositions.length - 1]
 			);
-		}
+		}*/
 		this.callback(this);
 		return this.localPosition;
 	}
 
-	private interpolate(
+	/*private interpolate(
 		point1: { time: number; pos: Vector3Type },
 		point2: { time: number; pos: Vector3Type }
 	) {
@@ -123,7 +130,7 @@ export class LocationProvider {
 		p1.y += (p2.y - p1.y) * progress;
 		p1.z += (p2.z - p1.z) * progress;
 		return p1;
-	}
+	}*/
 
 	private onLocationError(error: PositionError, onError: (error: string) => void) {
 		switch (error.code) {

@@ -1,0 +1,77 @@
+/*! Shadow Style */
+.tooltipster-sidetip.tooltipster-shadow .tooltipster-box {
+	border: none;
+	border-radius: 5px;
+	background: #fff;
+	box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.1);
+}
+.tooltipster-sidetip.tooltipster-shadow.tooltipster-bottom .tooltipster-box {
+	margin-top: 12px;
+} /* 0x4d */
+.tooltipster-sidetip.tooltipster-shadow.tooltipster-left .tooltipster-box {
+	margin-right: 12px;
+} /* 0x4d */
+.tooltipster-sidetip.tooltipster-shadow.tooltipster-right .tooltipster-box {
+	margin-left: 12px;
+} /* 0x4d */
+.tooltipster-sidetip.tooltipster-shadow.tooltipster-top .tooltipster-box {
+	margin-bottom: 12px;
+} /* 0x4d */
+.tooltipster-sidetip.tooltipster-shadow .tooltipster-content {
+	color: #8d8d8d;
+}
+.tooltipster-sidetip.tooltipster-shadow .tooltipster-arrow {
+	height: 12px;
+	margin-left: -12px;
+	width: 24px;
+} /* 0x4d */
+.tooltipster-sidetip.tooltipster-shadow.tooltipster-left .tooltipster-arrow,
+.tooltipster-sidetip.tooltipster-shadow.tooltipster-right .tooltipster-arrow {
+	height: 24px;
+	margin-left: 0;
+	margin-top: -12px;
+	width: 12px;
+} /* 0x4d */
+.tooltipster-sidetip.tooltipster-shadow .tooltipster-arrow-background {
+	display: none;
+}
+.tooltipster-sidetip.tooltipster-shadow .tooltipster-arrow-border {
+	border: 12px solid transparent;
+} /* 0x4d */
+.tooltipster-sidetip.tooltipster-shadow.tooltipster-bottom .tooltipster-arrow-border {
+	border-bottom-color: rgba(255, 255, 255, 0.8);
+} /* 0x4d */
+.tooltipster-sidetip.tooltipster-shadow.tooltipster-left .tooltipster-arrow-border {
+	border-left-color: rgba(255, 255, 255, 0.8);
+} /* 0x4d */
+.tooltipster-sidetip.tooltipster-shadow.tooltipster-right .tooltipster-arrow-border {
+	border-right-color: rgba(255, 255, 255, 0.8);
+} /* 0x4d */
+.tooltipster-sidetip.tooltipster-shadow.tooltipster-top .tooltipster-arrow-border {
+	border-top-color: rgba(255, 255, 255, 0.8);
+} /* 0x4d */
+.tooltipster-sidetip.tooltipster-shadow.tooltipster-bottom .tooltipster-arrow-uncropped {
+	top: -11px;
+} /* 0x4d */
+.tooltipster-sidetip.tooltipster-shadow.tooltipster-right .tooltipster-arrow-uncropped {
+	left: -11px;
+} /* 0x4d */
+
+/* Added Shadow Style 0x4d*/
+.tooltipster-base {
+	pointer-events: auto !important;
+}
+.tooltipster-sidetip.tooltipster-shadow .tooltipster-box {
+	background: rgba(255, 255, 255, 0.8) !important;
+	border-radius: 2px !important;
+}
+.tooltipster-sidetip .tooltipster-content {
+	padding: 0 !important;
+	font-size: 12px;
+}
+
+.tooltipster-sidetip.tooltipster-shadow .tooltipster-content {
+	/* margin: 6px; */
+	color: #000000;
+	line-height: normal;
+}
