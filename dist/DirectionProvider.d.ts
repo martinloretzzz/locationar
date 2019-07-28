@@ -19,7 +19,9 @@ export declare class DirectionProvider {
     private onScreenOrientationChangeEvent;
     private sensor;
     private callback;
-    constructor(callback?: (directionProvider: DirectionProvider) => void);
+    constructor(params: {
+        callback: (directionProvider: DirectionProvider) => void;
+    });
     getDirection(): Quaternion;
     getDebug(): {
         alpha: number;

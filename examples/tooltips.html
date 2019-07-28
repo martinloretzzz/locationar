@@ -150,24 +150,30 @@
 
 				// init source and make camera move with DirectionProvider
 				let source = new LOCATIONAR.Source({ camera });
-				let locProvider = new LOCATIONAR.LocationProvider(new THREE.Vector3(0, 0, 0), 4.0, loc => {
-					camera.position.set(0, 0, 0);
-					if (useGpsCoords) {
-						let coords = locProvider.getDebug().coords;
-						for (let tooltip of tooltips) {
-							tooltip.pos = new THREE.Vector3().copy(
-								new LOCATIONAR.GpsLocation(
-									tooltip.gps,
-									new THREE.Vector3(coords.latitude, 1.8, coords.longitude)
-								)
-							);
-							// invert the x coord, I don't really know why, maybe northern hemisphere
-							tooltip.pos.x = -tooltip.pos.x;
+				let locProvider = new LOCATIONAR.LocationProvider({
+					gpsZero: new THREE.Vector3(0, 0, 0),
+					cameraHeight: 4.0,
+					callback: loc => {
+						camera.position.set(0, 0, 0);
+						if (useGpsCoords) {
+							let coords = locProvider.getDebug().coords;
+							for (let tooltip of tooltips) {
+								tooltip.pos = new THREE.Vector3().copy(
+									new LOCATIONAR.GpsLocation(
+										tooltip.gps,
+										new THREE.Vector3(coords.latitude, 1.8, coords.longitude)
+									)
+								);
+								// invert the x coord, I don't really know why, maybe northern hemisphere
+								tooltip.pos.x = -tooltip.pos.x;
+							}
 						}
 					}
 				});
-				let dirProvider = new LOCATIONAR.DirectionProvider(dir => {
-					camera.quaternion.copy(dir.getDirection());
+				let dirProvider = new LOCATIONAR.DirectionProvider({
+					callback: dir => {
+						camera.quaternion.copy(dir.getDirection());
+					}
 				});
 
 				let animate = () => {
@@ -176,14 +182,14 @@
 				};
 
 				let updateTooltips = () => {
-					var vectorCamera = new THREE.Vector3(0, 0, -1);
+					let vectorCamera = new THREE.Vector3(0, 0, -1);
 					vectorCamera.applyQuaternion(camera.quaternion);
 					vectorCamera.normalize();
 
 					for (let tooltip of tooltips) {
 						const element = $("#" + tooltip.element);
 						if (element) {
-							var vectorCameraObject = tooltip.pos.sub(camera.position).normalize();
+							let vectorCameraObject = tooltip.pos.sub(camera.position).normalize();
 
 							let dot = vectorCamera.dot(vectorCameraObject);
 							const screenPos = toScreenPosition(tooltip.pos, camera);

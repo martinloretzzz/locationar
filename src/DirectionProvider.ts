@@ -6,7 +6,7 @@
  * W3C Device Orientation control (http://w3c.github.io/deviceorientation/spec-source-orientation.html)
  */
 
-import { GeoMath } from "./GeoMath";
+import { GeoMath, GeoUtil } from "./GeoMath";
 
 import { Quaternion } from "./math/Quaternion";
 import { Vector3 } from "./math/Vector3";
@@ -30,10 +30,12 @@ export class DirectionProvider {
 	private sensor: any | undefined;
 	private callback: (directionProvider: DirectionProvider) => void;
 
-	constructor(
-		callback: (directionProvider: DirectionProvider) => void = directionProvider => undefined
-	) {
-		this.callback = callback;
+	constructor(params: { callback: (directionProvider: DirectionProvider) => void }) {
+		this.callback = GeoUtil.setDefault<(directionProvider: DirectionProvider) => void>(
+			params.callback,
+			directionProvider => undefined
+		);
+
 		const scope = this;
 
 		this.onDeviceOrientationChangeEvent = event => {

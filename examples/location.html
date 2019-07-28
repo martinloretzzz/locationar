@@ -179,7 +179,7 @@
 
 			scene.add(new THREE.AmbientLight(0x404040));
 
-			var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
+			let directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
 			directionalLight.position.set(4, 20, 4);
 			directionalLight.lookAt(0,0,0);
 			scene.add(directionalLight);
@@ -199,25 +199,28 @@
 
 			let targetLat = document.getElementById("targetLatitude").value;
 			let targetLon = document.getElementById("targetLongitude").value;
-
-			// Standalone setup of LocationProvider and DirectionProvider
-			/*let source = new LOCATIONAR.Source({ camera, canvas: renderer.domElement });
-			let locProvider = new LOCATIONAR.LocationProvider(gpsTarget, 6.0, loc => {
-				camera.position.copy(loc.getLocation());
-			});
-			let dirProvider = new LOCATIONAR.DirectionProvider(dir => {
-				camera.quaternion.copy(dir.getDirection());
-			});*/
-
 			let gpsTarget = new THREE.Vector3(targetLat, 0, targetLon); // Zero position of local coord system
 
 			// Set up LOCATIONAR
-			let controller = new LOCATIONAR.Controller(gpsTarget, camera, 3+1.6, renderer.domElement);
+			let source = new LOCATIONAR.Source({ camera, canvas: renderer.domElement });
+			let locProvider = new LOCATIONAR.LocationProvider({
+				gpsZero: gpsTarget, 
+				cameraHeight: 1.6,
+				callback: loc => {
+					camera.position.copy(loc.getLocation());
+				}
+			});
+			let dirProvider = new LOCATIONAR.DirectionProvider({
+				callback: dir => {
+					camera.quaternion.copy(dir.getDirection());
+				}
+			});
 
 			// chrome flag #enable-generic-sensor-extra-classes need to be enabled for AmbientlightSensor to work
-			let luxProvider = new LOCATIONAR.BrightnessProvider(lux => {
-				//light.power = lux.getLightPower(2);
-			});
+			let luxProvider = new LOCATIONAR.BrightnessProvider({
+				callback: lux => {
+				light.power = lux.getLightPower(2);
+			}});
 
 			// End of LOCATIONAR
 
@@ -249,10 +252,6 @@
 				writeDebug(locProvider, dirProvider, luxProvider, camera);
 				renderer.render(scene, camera);
 			};
-
-			let source = controller.getSource();
-			let locProvider = controller.getLocProvider();
-			let dirProvider = controller.getDirProvider();
 
 			let debugVisible = false;
 

@@ -17,10 +17,10 @@
 	<body style="margin : 0px; overflow:hidden; font-family: Monospace;">
 		<script>
 			let getQueryVariable = variable => {
-				var query = window.location.search.substring(1);
-				var vars = query.split("&");
-				for (var i = 0; i < vars.length; i++) {
-					var pair = vars[i].split("=");
+				let query = window.location.search.substring(1);
+				let vars = query.split("&");
+				for (let i = 0; i < vars.length; i++) {
+					let pair = vars[i].split("=");
 					if (pair[0] == variable) {
 						return pair[1];
 					}
@@ -51,10 +51,10 @@
 			renderer.domElement.style.left = "0px";
 			document.body.appendChild(renderer.domElement);
 
-			var lon = getQueryVariable("lon") ? getQueryVariable("lon") : 0;
-			var lat = getQueryVariable("lat") ? getQueryVariable("lat") : 0;
-			var rot = getQueryVariable("rot") ? getQueryVariable("rot") : 0;
-			var height = getQueryVariable("height") ? getQueryVariable("height") : 0;
+			let lon = getQueryVariable("lon") ? getQueryVariable("lon") : 0;
+			let lat = getQueryVariable("lat") ? getQueryVariable("lat") : 0;
+			let rot = getQueryVariable("rot") ? getQueryVariable("rot") : 0;
+			let height = getQueryVariable("height") ? getQueryVariable("height") : 0;
 
 			// here you can fill in the long/lat of the target and the rotation
 			// lon = 0; // Longitude e.g. for London: lon = 51.5074;
@@ -67,12 +67,17 @@
 
 			// init source and make camera move with DirectionProvider
 			let source = new LOCATIONAR.Source({ camera, canvas: renderer.domElement });
-			let locProvider = new LOCATIONAR.LocationProvider(gpsTarget, height, loc => {
-				console.log(camera.position);
-				camera.position.copy(loc.getLocation());
+			let locProvider = new LOCATIONAR.LocationProvider({
+				gpsZero: gpsTarget,
+				cameraHeight: height,
+				callback: loc => {
+					camera.position.copy(loc.getLocation());
+				}
 			});
-			let dirProvider = new LOCATIONAR.DirectionProvider(dir => {
-				camera.quaternion.copy(dir.getDirection());
+			let dirProvider = new LOCATIONAR.DirectionProvider({
+				callback: dir => {
+					camera.quaternion.copy(dir.getDirection());
+				}
 			});
 
 			camera.position.set(0, 0, 0);

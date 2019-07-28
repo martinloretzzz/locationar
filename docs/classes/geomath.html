@@ -92,6 +92,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external"><a href="geomath.html#coordto3dspace" class="tsd-kind-icon">coord<wbr>To3d<wbr>Space</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external"><a href="geomath.html#degtorad" class="tsd-kind-icon">deg<wbr>ToRad</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external"><a href="geomath.html#getflatcoorddistance" class="tsd-kind-icon">get<wbr>Flat<wbr>Coord<wbr>Distance</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external"><a href="geomath.html#interpolate" class="tsd-kind-icon">interpolate</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external"><a href="geomath.html#limit" class="tsd-kind-icon">limit</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external"><a href="geomath.html#radtodeg" class="tsd-kind-icon">rad<wbr>ToDeg</a></li>
 							</ul>
@@ -107,7 +108,7 @@
 					<div class="tsd-signature tsd-kind-icon">EARTHRADIUS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;6371000</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/GeoMath.ts#L16">GeoMath.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/GeoMath.ts#L27">GeoMath.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -117,7 +118,7 @@
 					<div class="tsd-signature tsd-kind-icon">PI<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;3.141592653589793</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/GeoMath.ts#L17">GeoMath.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/GeoMath.ts#L28">GeoMath.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -134,7 +135,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/GeoMath.ts#L60">GeoMath.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/GeoMath.ts#L71">GeoMath.ts:71</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -160,7 +161,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/GeoMath.ts#L47">GeoMath.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/GeoMath.ts#L58">GeoMath.ts:58</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -186,7 +187,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/GeoMath.ts#L19">GeoMath.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/GeoMath.ts#L30">GeoMath.ts:30</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -209,7 +210,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/GeoMath.ts#L31">GeoMath.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/GeoMath.ts#L42">GeoMath.ts:42</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -226,6 +227,54 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+					<a name="interpolate" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> interpolate</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">interpolate<span class="tsd-signature-symbol">(</span>point1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, point2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, lastPoint<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, now<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="vector3.html" class="tsd-signature-type">Vector3</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/GeoMath.ts#L88">GeoMath.ts:88</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>point1: <span class="tsd-signature-type">object</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5>pos<span class="tsd-signature-symbol">: </span><a href="../interfaces/vector3type.html" class="tsd-signature-type">Vector3Type</a></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>time<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5>point2: <span class="tsd-signature-type">object</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5>pos<span class="tsd-signature-symbol">: </span><a href="../interfaces/vector3type.html" class="tsd-signature-type">Vector3Type</a></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>time<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5>lastPoint: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>now: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="vector3.html" class="tsd-signature-type">Vector3</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
 					<a name="limit" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> limit</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
@@ -235,7 +284,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/GeoMath.ts#L27">GeoMath.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/GeoMath.ts#L38">GeoMath.ts:38</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -264,7 +313,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/GeoMath.ts#L23">GeoMath.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/GeoMath.ts#L34">GeoMath.ts:34</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -293,9 +342,6 @@
 						<a href="brightnessprovider.html" class="tsd-kind-icon">Brightness<wbr>Provider</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
-						<a href="controller.html" class="tsd-kind-icon">Controller</a>
-					</li>
-					<li class=" tsd-kind-class tsd-is-external">
 						<a href="directionprovider.html" class="tsd-kind-icon">Direction<wbr>Provider</a>
 					</li>
 				</ul>
@@ -322,6 +368,9 @@
 								<a href="geomath.html#getflatcoorddistance" class="tsd-kind-icon">get<wbr>Flat<wbr>Coord<wbr>Distance</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
+								<a href="geomath.html#interpolate" class="tsd-kind-icon">interpolate</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
 								<a href="geomath.html#limit" class="tsd-kind-icon">limit</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
@@ -331,6 +380,9 @@
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-class tsd-is-external">
+						<a href="geoutil.html" class="tsd-kind-icon">Geo<wbr>Util</a>
+					</li>
 					<li class=" tsd-kind-class tsd-is-external">
 						<a href="gpslocation.html" class="tsd-kind-icon">Gps<wbr>Location</a>
 					</li>

@@ -1,3 +1,5 @@
+import { Vector3 } from "./math/Vector3";
+
 export interface Vector3Type {
 	x: number;
 	y: number;
@@ -9,6 +11,15 @@ export interface QuaternionType {
 	y: number;
 	z: number;
 	w: number;
+}
+
+export class GeoUtil {
+	public static setDefault = <T>(value: T | undefined, def: T): T => {
+		if (value !== undefined) {
+			return value;
+		}
+		return def;
+	};
 }
 
 // tslint:disable: max-classes-per-file
@@ -72,5 +83,22 @@ export class GeoMath {
 			y: dAlt,
 			z: gpsPosition.z + this.radToDeg(dLon)
 		};
+	}
+
+	public static interpolate(
+		point1: { time: number; pos: Vector3Type },
+		point2: { time: number; pos: Vector3Type },
+		lastPoint: number,
+		now: number
+	) {
+		const p1 = point1.pos;
+		const p2 = point2.pos;
+		const progress = GeoMath.limit((now - lastPoint) / (point2.time - point1.time), 0, 1);
+
+		const p0 = new Vector3();
+		p0.x = p1.x + (p2.x - p1.x) * progress;
+		p0.y = p1.y + (p2.y - p1.y) * progress;
+		p0.z = p1.z + (p2.z - p1.z) * progress;
+		return p0;
 	}
 }

@@ -41,8 +41,10 @@
 
 			// init source and make camera move with DirectionProvider
 			let source = new LOCATIONAR.Source({ camera, canvas: renderer.domElement });
-			let dirProvider = new LOCATIONAR.DirectionProvider(dir => {
-				camera.quaternion.copy(dir.getDirection());
+			let dirProvider = new LOCATIONAR.DirectionProvider({
+				callback: dir => {
+					camera.quaternion.copy(dir.getDirection());
+				}
 			});
 
 			camera.position.set(0, 0, 0);

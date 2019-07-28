@@ -1,10 +1,17 @@
-import { GeoMath } from "./GeoMath";
+import { GeoMath, GeoUtil } from "./GeoMath";
 
 export class BrightnessProvider {
+	private callback: (luxProvider: BrightnessProvider) => void;
+
 	private illuminance: number = 0;
 	private avalible: boolean = false;
 
-	constructor(callback: (luxProvider: BrightnessProvider) => void = luxProvider => undefined) {
+	constructor(params: { callback: (luxProvider: BrightnessProvider) => void }) {
+		this.callback = GeoUtil.setDefault<(luxProvider: BrightnessProvider) => void>(
+			params.callback,
+			luxProvider => undefined
+		);
+
 		if ("AmbientLightSensor" in window && "permissions" in (navigator as any)) {
 			(navigator as any).permissions
 				.query({ name: "ambient-light-sensor" })
@@ -16,12 +23,12 @@ export class BrightnessProvider {
 
 					// @ts-ignore
 					const sensor = new AmbientLightSensor();
-					sensor.onerror = this.onSensorError;
+					sensor.onerror = (error: any) => this.onSensorError(error, console.info);
 
 					sensor.onreading = () => {
 						this.illuminance = sensor.illuminance;
 						this.avalible = true;
-						callback(this);
+						this.callback(this);
 					};
 
 					sensor.start();
@@ -48,13 +55,17 @@ export class BrightnessProvider {
 		return 4 * GeoMath.PI * this.getBrightness() * multiply;
 	}
 
-	private onSensorError(event: any) {
+	private onSensorError(event: any, onError: (error: string | Error) => void) {
 		// Add SecurityError/feature policy error https://developer.mozilla.org/en-US/docs/Web/API/Sensor_APIs
-		if (event.error.name === "NotAllowedError") {
-			console.info("You need to request permission for the ambientlightsensor first");
-		} else if (event.error.name === "NotReadableError") {
-			console.info("Cannot connect to the ambientlightsensor sensor");
+		switch (event.error.name) {
+			case "NotAllowedError":
+				onError("You need to request permission for the ambientlightsensor first");
+				break;
+			case "NotReadableError":
+				onError("Cannot connect to the ambientlightsensor sensor");
+				break;
+			default:
+				throw event.error; // Error message when the error is unknown
 		}
-		console.info(event.error.name, event.error.message);
 	}
 }

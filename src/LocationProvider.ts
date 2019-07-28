@@ -1,23 +1,21 @@
 import { GpsLocation } from "./GpsLocation";
-import { Vector3Type } from "./GeoMath";
+import { GeoMath, GeoUtil, Vector3Type } from "./GeoMath";
 import { Vector3 } from "./math/Vector3";
-
-// import KalmanFilter from "./kalmanjs";
 
 export class LocationProvider {
 	private localPosition: Vector3Type = new Vector3();
-	private cameraHeight: number;
-	private gpsZero: Vector3Type = new Vector3();
-
-	// private lastLocalPositions: Array<{ time: number; pos: Vector3Type }> = [];
-	private lastPositionTimestamp: number = 0;
-
-	private gpsPosition: Position | undefined;
-	private useGpsAltitude: boolean = false;
-
 	private callback: (locationProvider: LocationProvider) => void;
 
-	// private filterLong = new KalmanFilter();
+	private cameraHeight: number;
+	private gpsZero: Vector3Type = new Vector3();
+	private useGpsAltitude: boolean = false;
+
+	private lastPositionArrived: number = Date.now();
+	private position1: { time: number; pos: Vector3Type } | undefined;
+	private position2: { time: number; pos: Vector3Type } | undefined;
+
+	private lastPositionTimestamp: number = 0;
+	private gpsPosition: Position | undefined;
 
 	private watchID: number | undefined;
 	private gpsOptions = {
@@ -27,21 +25,26 @@ export class LocationProvider {
 		timeout: Infinity
 	};
 
-	constructor(
-		gpsZero: Vector3Type,
-		cameraHeight: number = 2.0,
-		callback: (locationProvider: LocationProvider) => void = locationProvider => undefined,
-		useGpsAltitude: boolean = false
-	) {
-		this.gpsZero = gpsZero;
-		this.cameraHeight = cameraHeight;
-		this.useGpsAltitude = useGpsAltitude;
-		this.callback = callback;
+	constructor(params: {
+		callback: (locationProvider: LocationProvider) => void;
+		gpsZero: Vector3Type;
+		cameraHeight?: number;
+		useGpsAltitude?: boolean;
+	}) {
+		this.gpsZero = params.gpsZero;
+		this.cameraHeight = GeoUtil.setDefault<number>(params.cameraHeight, 1.6);
+		this.useGpsAltitude = GeoUtil.setDefault<boolean>(params.useGpsAltitude, false);
+		this.callback = GeoUtil.setDefault<(locationProvider: LocationProvider) => void>(
+			params.callback,
+			locationProvider => undefined
+		);
 
-		if (!gpsZero) {
+		if (!this.gpsZero) {
 			console.info("gpsZero is required");
 			this.gpsZero = new Vector3();
 		}
+
+		// TODO Permission Api
 
 		// https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
 		if (!navigator.geolocation) {
@@ -67,12 +70,37 @@ export class LocationProvider {
 		return this.gpsPosition;
 	}
 
-	public setCameraHeight(height: number) {
-		this.cameraHeight = height;
-	}
+	public updatePosition() {
+		if (this.gpsPosition) {
+			if (this.gpsPosition.timestamp !== this.lastPositionTimestamp) {
+				const coords = this.gpsPosition.coords;
+				if (coords.latitude && coords.longitude) {
+					const altitude = coords.altitude ? coords.altitude : 0; // TODO not all positions contain altitude
+					const height = this.useGpsAltitude && coords.altitude ? altitude : this.cameraHeight;
+					const gps = new Vector3(coords.latitude, height, coords.longitude);
+					const positionRaw = new GpsLocation(gps, this.gpsZero);
+					const position0 = new Vector3(-positionRaw.x, positionRaw.y, positionRaw.z);
 
-	public setGpsZero(gpsZero: Vector3Type) {
-		this.gpsZero = gpsZero;
+					this.lastPositionTimestamp = this.gpsPosition.timestamp;
+					this.lastPositionArrived = Date.now();
+
+					this.position1 = this.position2;
+					this.position2 = { pos: position0, time: this.gpsPosition.timestamp };
+				}
+			}
+		}
+
+		if (this.position1 !== undefined && this.position2 !== undefined) {
+			this.localPosition = GeoMath.interpolate(
+				this.position1,
+				this.position2,
+				this.lastPositionArrived,
+				Date.now()
+			);
+		}
+
+		this.callback(this);
+		return this.localPosition;
 	}
 
 	public dispose() {
@@ -81,56 +109,13 @@ export class LocationProvider {
 		}
 	}
 
-	private updatePosition() {
-		if (this.gpsPosition) {
-			if (this.gpsPosition.timestamp !== this.lastPositionTimestamp) {
-				const coords = this.gpsPosition.coords;
-				if (coords.latitude && coords.longitude) {
-					// const lon = this.filterLong.filter(coords.longitude);
-					// const lat = this.filterLong.filter(coords.latitude);
-
-					const altitude = coords.altitude ? coords.altitude : 0; // TODO not all positions contain altitude
-					const height = this.useGpsAltitude && coords.altitude ? altitude : this.cameraHeight;
-					const gps = new Vector3(coords.latitude, height, coords.longitude);
-					const positionRaw = new GpsLocation(gps, this.gpsZero);
-					this.localPosition = new Vector3(-positionRaw.x, positionRaw.y, positionRaw.z);
-
-					this.lastPositionTimestamp = this.gpsPosition.timestamp;
-
-					/*this.lastLocalPositions.push({
-						time: this.gpsPosition.timestamp,
-						pos: this.localPosition
-					});
-					if (this.lastLocalPositions.length > 2) {
-						this.lastLocalPositions.shift();
-					}*/
-				}
-			}
-		}
-
-		/*if (this.lastLocalPositions.length >= 2) {
-			this.localPosition = this.interpolate(
-				this.lastLocalPositions[this.lastLocalPositions.length - 2],
-				this.lastLocalPositions[this.lastLocalPositions.length - 1]
-			);
-		}*/
-		this.callback(this);
-		return this.localPosition;
+	public setCameraHeight(height: number) {
+		this.cameraHeight = height;
 	}
 
-	/*private interpolate(
-		point1: { time: number; pos: Vector3Type },
-		point2: { time: number; pos: Vector3Type }
-	) {
-		const p1 = point1.pos;
-		const p2 = point2.pos;
-		const progress = GeoMath.limit((Date.now() - point2.time) / (point2.time - point1.time), 0, 1);
-		// console.info(progress);
-		p1.x += (p2.x - p1.x) * progress;
-		p1.y += (p2.y - p1.y) * progress;
-		p1.z += (p2.z - p1.z) * progress;
-		return p1;
-	}*/
+	public setGpsZero(gpsZero: Vector3Type) {
+		this.gpsZero = gpsZero;
+	}
 
 	private onLocationError(error: PositionError, onError: (error: string) => void) {
 		switch (error.code) {

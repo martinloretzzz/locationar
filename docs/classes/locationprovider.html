@@ -91,8 +91,11 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="locationprovider.html#cameraheight" class="tsd-kind-icon">camera<wbr>Height</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="locationprovider.html#gpsposition" class="tsd-kind-icon">gps<wbr>Position</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="locationprovider.html#gpszero" class="tsd-kind-icon">gps<wbr>Zero</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="locationprovider.html#lastpositionarrived" class="tsd-kind-icon">last<wbr>Position<wbr>Arrived</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="locationprovider.html#lastpositiontimestamp" class="tsd-kind-icon">last<wbr>Position<wbr>Timestamp</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="locationprovider.html#localposition" class="tsd-kind-icon">local<wbr>Position</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="locationprovider.html#position1" class="tsd-kind-icon">position1</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="locationprovider.html#position2" class="tsd-kind-icon">position2</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="locationprovider.html#usegpsaltitude" class="tsd-kind-icon">use<wbr>Gps<wbr>Altitude</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="locationprovider.html#watchid" class="tsd-kind-icon">watchID</a></li>
 							</ul>
@@ -106,7 +109,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="locationprovider.html#onlocationerror" class="tsd-kind-icon">on<wbr>Location<wbr>Error</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="locationprovider.html#setcameraheight" class="tsd-kind-icon">set<wbr>Camera<wbr>Height</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="locationprovider.html#setgpszero" class="tsd-kind-icon">set<wbr>Gps<wbr>Zero</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="locationprovider.html#updateposition" class="tsd-kind-icon">update<wbr>Position</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="locationprovider.html#updateposition" class="tsd-kind-icon">update<wbr>Position</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected tsd-is-external">
@@ -124,46 +127,51 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Location<wbr>Provider<span class="tsd-signature-symbol">(</span>gpsZero<span class="tsd-signature-symbol">: </span><a href="../interfaces/vector3type.html" class="tsd-signature-type">Vector3Type</a>, cameraHeight<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, callback<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">function</span>, useGpsAltitude<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="locationprovider.html" class="tsd-signature-type">LocationProvider</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Location<wbr>Provider<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="locationprovider.html" class="tsd-signature-type">LocationProvider</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/LocationProvider.ts#L28">LocationProvider.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/LocationProvider.ts#L26">LocationProvider.ts:26</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>gpsZero: <a href="../interfaces/vector3type.html" class="tsd-signature-type">Vector3Type</a></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> cameraHeight: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;2</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> callback: <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> =&nbsp;locationProvider &#x3D;&gt; undefined</span></h5>
+									<h5>params: <span class="tsd-signature-type">object</span></h5>
 									<ul class="tsd-parameters">
-										<li class="tsd-parameter-siganture">
-											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>locationProvider<span class="tsd-signature-symbol">: </span><a href="locationprovider.html" class="tsd-signature-type">LocationProvider</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-											</ul>
-											<ul class="tsd-descriptions">
-												<li class="tsd-description">
-													<h4 class="tsd-parameters-title">Parameters</h4>
-													<ul class="tsd-parameters">
-														<li>
-															<h5>locationProvider: <a href="locationprovider.html" class="tsd-signature-type">LocationProvider</a></h5>
+										<li class="tsd-parameter">
+											<h5>callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></h5>
+											<ul class="tsd-parameters">
+												<li class="tsd-parameter-siganture">
+													<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable tsd-is-not-exported">
+														<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>locationProvider<span class="tsd-signature-symbol">: </span><a href="locationprovider.html" class="tsd-signature-type">LocationProvider</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+													</ul>
+													<ul class="tsd-descriptions">
+														<li class="tsd-description">
+															<h4 class="tsd-parameters-title">Parameters</h4>
+															<ul class="tsd-parameters">
+																<li>
+																	<h5>locationProvider: <a href="locationprovider.html" class="tsd-signature-type">LocationProvider</a></h5>
+																</li>
+															</ul>
+															<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 														</li>
 													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 												</li>
 											</ul>
 										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> camera<wbr>Height<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>gps<wbr>Zero<span class="tsd-signature-symbol">: </span><a href="../interfaces/vector3type.html" class="tsd-signature-type">Vector3Type</a></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> use<wbr>Gps<wbr>Altitude<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></h5>
+										</li>
 									</ul>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> useGpsAltitude: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="locationprovider.html" class="tsd-signature-type">LocationProvider</a></h4>
@@ -179,7 +187,7 @@
 					<div class="tsd-signature tsd-kind-icon">callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/LocationProvider.ts#L18">LocationProvider.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/LocationProvider.ts#L7">LocationProvider.ts:7</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -210,7 +218,7 @@
 					<div class="tsd-signature tsd-kind-icon">camera<wbr>Height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/LocationProvider.ts#L9">LocationProvider.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/LocationProvider.ts#L9">LocationProvider.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -220,7 +228,7 @@
 					<div class="tsd-signature tsd-kind-icon">gps<wbr>Position<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Position</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/LocationProvider.ts#L15">LocationProvider.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/LocationProvider.ts#L18">LocationProvider.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -230,7 +238,17 @@
 					<div class="tsd-signature tsd-kind-icon">gps<wbr>Zero<span class="tsd-signature-symbol">:</span> <a href="../interfaces/vector3type.html" class="tsd-signature-type">Vector3Type</a><span class="tsd-signature-symbol"> =&nbsp;new Vector3()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/LocationProvider.ts#L10">LocationProvider.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/LocationProvider.ts#L10">LocationProvider.ts:10</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="lastpositionarrived" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> last<wbr>Position<wbr>Arrived</h3>
+					<div class="tsd-signature tsd-kind-icon">last<wbr>Position<wbr>Arrived<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;Date.now()</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/LocationProvider.ts#L13">LocationProvider.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -240,7 +258,7 @@
 					<div class="tsd-signature tsd-kind-icon">last<wbr>Position<wbr>Timestamp<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/LocationProvider.ts#L13">LocationProvider.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/LocationProvider.ts#L17">LocationProvider.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -250,7 +268,27 @@
 					<div class="tsd-signature tsd-kind-icon">local<wbr>Position<span class="tsd-signature-symbol">:</span> <a href="../interfaces/vector3type.html" class="tsd-signature-type">Vector3Type</a><span class="tsd-signature-symbol"> =&nbsp;new Vector3()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/LocationProvider.ts#L8">LocationProvider.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/LocationProvider.ts#L6">LocationProvider.ts:6</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="position1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> position1</h3>
+					<div class="tsd-signature tsd-kind-icon">position1<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/LocationProvider.ts#L14">LocationProvider.ts:14</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="position2" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> position2</h3>
+					<div class="tsd-signature tsd-kind-icon">position2<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/LocationProvider.ts#L15">LocationProvider.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -260,7 +298,7 @@
 					<div class="tsd-signature tsd-kind-icon">use<wbr>Gps<wbr>Altitude<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/LocationProvider.ts#L16">LocationProvider.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/LocationProvider.ts#L11">LocationProvider.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -270,7 +308,7 @@
 					<div class="tsd-signature tsd-kind-icon">watchID<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/LocationProvider.ts#L22">LocationProvider.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/LocationProvider.ts#L20">LocationProvider.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -287,7 +325,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/LocationProvider.ts#L78">LocationProvider.ts:78</a></li>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/LocationProvider.ts#L106">LocationProvider.ts:106</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -304,7 +342,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/LocationProvider.ts#L66">LocationProvider.ts:66</a></li>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/LocationProvider.ts#L69">LocationProvider.ts:69</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">undefined</span>
@@ -324,7 +362,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/LocationProvider.ts#L62">LocationProvider.ts:62</a></li>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/LocationProvider.ts#L65">LocationProvider.ts:65</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/vector3type.html" class="tsd-signature-type">Vector3Type</a></h4>
@@ -341,7 +379,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/LocationProvider.ts#L135">LocationProvider.ts:135</a></li>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/LocationProvider.ts#L120">LocationProvider.ts:120</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -385,7 +423,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/LocationProvider.ts#L70">LocationProvider.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/LocationProvider.ts#L112">LocationProvider.ts:112</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -408,7 +446,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/LocationProvider.ts#L74">LocationProvider.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/LocationProvider.ts#L116">LocationProvider.ts:116</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -421,17 +459,17 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
 					<a name="updateposition" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> update<wbr>Position</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<h3>update<wbr>Position</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
 						<li class="tsd-signature tsd-kind-icon">update<wbr>Position<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/vector3type.html" class="tsd-signature-type">Vector3Type</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/LocationProvider.ts#L84">LocationProvider.ts:84</a></li>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/LocationProvider.ts#L73">LocationProvider.ts:73</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/vector3type.html" class="tsd-signature-type">Vector3Type</a></h4>
@@ -447,7 +485,7 @@
 					<div class="tsd-signature tsd-kind-icon">gps<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/LocationProvider.ts#L23">LocationProvider.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/LocationProvider.ts#L21">LocationProvider.ts:21</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external">
@@ -456,7 +494,7 @@
 						<div class="tsd-signature tsd-kind-icon">enable<wbr>High<wbr>Accuracy<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/LocationProvider.ts#L25">LocationProvider.ts:25</a></li>
+								<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/LocationProvider.ts#L23">LocationProvider.ts:23</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -466,7 +504,7 @@
 						<div class="tsd-signature tsd-kind-icon">maximum<wbr>Age<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/LocationProvider.ts#L26">LocationProvider.ts:26</a></li>
+								<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/LocationProvider.ts#L24">LocationProvider.ts:24</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -476,7 +514,7 @@
 						<div class="tsd-signature tsd-kind-icon">timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;Infinity</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/LocationProvider.ts#L27">LocationProvider.ts:27</a></li>
+								<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/LocationProvider.ts#L25">LocationProvider.ts:25</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -497,13 +535,13 @@
 						<a href="brightnessprovider.html" class="tsd-kind-icon">Brightness<wbr>Provider</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
-						<a href="controller.html" class="tsd-kind-icon">Controller</a>
-					</li>
-					<li class=" tsd-kind-class tsd-is-external">
 						<a href="directionprovider.html" class="tsd-kind-icon">Direction<wbr>Provider</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
 						<a href="geomath.html" class="tsd-kind-icon">Geo<wbr>Math</a>
+					</li>
+					<li class=" tsd-kind-class tsd-is-external">
+						<a href="geoutil.html" class="tsd-kind-icon">Geo<wbr>Util</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
 						<a href="gpslocation.html" class="tsd-kind-icon">Gps<wbr>Location</a>
@@ -529,10 +567,19 @@
 								<a href="locationprovider.html#gpszero" class="tsd-kind-icon">gps<wbr>Zero</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+								<a href="locationprovider.html#lastpositionarrived" class="tsd-kind-icon">last<wbr>Position<wbr>Arrived</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 								<a href="locationprovider.html#lastpositiontimestamp" class="tsd-kind-icon">last<wbr>Position<wbr>Timestamp</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 								<a href="locationprovider.html#localposition" class="tsd-kind-icon">local<wbr>Position</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+								<a href="locationprovider.html#position1" class="tsd-kind-icon">position1</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+								<a href="locationprovider.html#position2" class="tsd-kind-icon">position2</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 								<a href="locationprovider.html#usegpsaltitude" class="tsd-kind-icon">use<wbr>Gps<wbr>Altitude</a>
@@ -558,7 +605,7 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="locationprovider.html#setgpszero" class="tsd-kind-icon">set<wbr>Gps<wbr>Zero</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="locationprovider.html#updateposition" class="tsd-kind-icon">update<wbr>Position</a>
 							</li>
 							<li class=" tsd-kind-object-literal tsd-parent-kind-class tsd-is-private tsd-is-external">

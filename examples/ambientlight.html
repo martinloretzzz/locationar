@@ -11,7 +11,7 @@
 		<title>AmbientLight Example</title>
 		<script>
 			// Bind window error for error handling
-			window.addEventListener("info", function(event) {alert("ERROR: " + event.message + " at " + event.filename + " : " + event.lineno + " : " + event.colno);}); // prettier-ignore
+			window.addEventListener("error", function(event) {alert("ERROR: " + event.message + " at " + event.filename + " : " + event.lineno + " : " + event.colno);}); // prettier-ignore
 		</script>
 	</head>
 	<body style="margin : 0px; overflow:hidden; font-family: Monospace;">
@@ -25,38 +25,39 @@
 			<div>Brightness: <span id="brightness">0</span></div>
 		</div>
 		<script>
-			var scene = new THREE.Scene();
-			var camera = new THREE.PerspectiveCamera(
+			let scene = new THREE.Scene();
+			let camera = new THREE.PerspectiveCamera(
 				75,
 				window.innerWidth / window.innerHeight,
 				0.1,
 				1000
 			);
+			camera.position.z = 5;
 
-			var renderer = new THREE.WebGLRenderer();
+			let renderer = new THREE.WebGLRenderer();
 			renderer.setSize(window.innerWidth, window.innerHeight);
 			document.body.appendChild(renderer.domElement);
 
-			var geometry = new THREE.BoxGeometry(1, 1, 1);
-			var material = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
-			var cube = new THREE.Mesh(geometry, material);
+			let geometry = new THREE.BoxGeometry(1, 1, 1);
+			let material = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
+			let cube = new THREE.Mesh(geometry, material);
 			scene.add(cube);
 
 			let light = new THREE.AmbientLight(0x101010);
 			scene.add(light);
 
 			// chrome flag #enable-generic-sensor-extra-classes need to be enabled for AmbientlightSensor to work
-			let luxProvider = new LOCATIONAR.BrightnessProvider(lux => {
-				light.intensity = lux.getLightPower(1.1);
-				document.getElementById("avalible").innerHTML = luxProvider.isAvalible();
-				document.getElementById("illuminance").innerHTML = luxProvider.getIlluminance();
-				document.getElementById("brightness").innerHTML =
-					Math.round(1000 * luxProvider.getBrightness()) / 1000;
+			let luxProvider = new LOCATIONAR.BrightnessProvider({
+				callback: lux => {
+					light.intensity = lux.getLightPower(1.1);
+					document.getElementById("avalible").innerHTML = luxProvider.isAvalible();
+					document.getElementById("illuminance").innerHTML = luxProvider.getIlluminance();
+					document.getElementById("brightness").innerHTML =
+						Math.round(1000 * luxProvider.getBrightness()) / 1000;
+				}
 			});
 
-			camera.position.z = 5;
-
-			var animate = function() {
+			let animate = () => {
 				requestAnimationFrame(animate);
 
 				cube.rotation.x += 0.01;

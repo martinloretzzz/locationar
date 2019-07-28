@@ -27,6 +27,11 @@ You can also download this repository and import the dist/LOCATIONAR.js file
 
 Open https://0b01001101.github.io/locationar/ and set a target position
 
+## Problems
+
+- missing compass accurcy[can't find exact numbers, but up to +/- 10° on good devices, on some devices completely unuseable]
+- gps accurcy[can be a problem if the object is nearer than 20 meters]
+
 ## Browser compability
 
 ✔️Chrome

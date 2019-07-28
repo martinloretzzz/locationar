@@ -88,6 +88,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="directionprovider.html#alphaoffset" class="tsd-kind-icon">alpha<wbr>Offset</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="directionprovider.html#callback" class="tsd-kind-icon">callback</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="directionprovider.html#enabled" class="tsd-kind-icon">enabled</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="directionprovider.html#ondeviceorientationchangeevent" class="tsd-kind-icon">on<wbr>Device<wbr>Orientation<wbr>Change<wbr>Event</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="directionprovider.html#onscreenorientationchangeevent" class="tsd-kind-icon">on<wbr>Screen<wbr>Orientation<wbr>Change<wbr>Event</a></li>
@@ -95,7 +96,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="directionprovider.html#q1" class="tsd-kind-icon">q1</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="directionprovider.html#quaternion" class="tsd-kind-icon">quaternion</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="directionprovider.html#screenorientation" class="tsd-kind-icon">screen<wbr>Orientation</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="directionprovider.html#targetquanternion" class="tsd-kind-icon">target<wbr>Quanternion</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="directionprovider.html#sensor" class="tsd-kind-icon">sensor</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="directionprovider.html#zee" class="tsd-kind-icon">zee</a></li>
 							</ul>
 						</section>
@@ -107,6 +108,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="directionprovider.html#dispose" class="tsd-kind-icon">dispose</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="directionprovider.html#getdebug" class="tsd-kind-icon">get<wbr>Debug</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="directionprovider.html#getdirection" class="tsd-kind-icon">get<wbr>Direction</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="directionprovider.html#quaternionfromorientation" class="tsd-kind-icon">quaternion<wbr>From<wbr>Orientation</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="directionprovider.html#setobjectquaternion" class="tsd-kind-icon">set<wbr>Object<wbr>Quaternion</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="directionprovider.html#updatedeviceorientation" class="tsd-kind-icon">update<wbr>Device<wbr>Orientation</a></li>
 							</ul>
@@ -126,33 +128,38 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Direction<wbr>Provider<span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="directionprovider.html" class="tsd-signature-type">DirectionProvider</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Direction<wbr>Provider<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="directionprovider.html" class="tsd-signature-type">DirectionProvider</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/DirectionProvider.ts#L30">DirectionProvider.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L31">DirectionProvider.ts:31</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> callback: <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> =&nbsp;directionProvider &#x3D;&gt; undefined</span></h5>
+									<h5>params: <span class="tsd-signature-type">object</span></h5>
 									<ul class="tsd-parameters">
-										<li class="tsd-parameter-siganture">
-											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>directionProvider<span class="tsd-signature-symbol">: </span><a href="directionprovider.html" class="tsd-signature-type">DirectionProvider</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-											</ul>
-											<ul class="tsd-descriptions">
-												<li class="tsd-description">
-													<h4 class="tsd-parameters-title">Parameters</h4>
-													<ul class="tsd-parameters">
-														<li>
-															<h5>directionProvider: <a href="directionprovider.html" class="tsd-signature-type">DirectionProvider</a></h5>
+										<li class="tsd-parameter">
+											<h5>callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></h5>
+											<ul class="tsd-parameters">
+												<li class="tsd-parameter-siganture">
+													<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable tsd-is-not-exported">
+														<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>directionProvider<span class="tsd-signature-symbol">: </span><a href="directionprovider.html" class="tsd-signature-type">DirectionProvider</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+													</ul>
+													<ul class="tsd-descriptions">
+														<li class="tsd-description">
+															<h4 class="tsd-parameters-title">Parameters</h4>
+															<ul class="tsd-parameters">
+																<li>
+																	<h5>directionProvider: <a href="directionprovider.html" class="tsd-signature-type">DirectionProvider</a></h5>
+																</li>
+															</ul>
+															<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 														</li>
 													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 												</li>
 											</ul>
 										</li>
@@ -172,9 +179,40 @@
 					<div class="tsd-signature tsd-kind-icon">alpha<wbr>Offset<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;GeoMath.degToRad(-90)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/DirectionProvider.ts#L15">DirectionProvider.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L15">DirectionProvider.ts:15</a></li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="callback" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> callback</h3>
+					<div class="tsd-signature tsd-kind-icon">callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L31">DirectionProvider.ts:31</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>directionProvider<span class="tsd-signature-symbol">: </span><a href="directionprovider.html" class="tsd-signature-type">DirectionProvider</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>directionProvider: <a href="directionprovider.html" class="tsd-signature-type">DirectionProvider</a></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 					<a name="enabled" class="tsd-anchor"></a>
@@ -182,7 +220,7 @@
 					<div class="tsd-signature tsd-kind-icon">enabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/DirectionProvider.ts#L17">DirectionProvider.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L17">DirectionProvider.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -192,7 +230,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Device<wbr>Orientation<wbr>Change<wbr>Event<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/DirectionProvider.ts#L29">DirectionProvider.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L28">DirectionProvider.ts:28</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -223,7 +261,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Screen<wbr>Orientation<wbr>Change<wbr>Event<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/DirectionProvider.ts#L30">DirectionProvider.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L29">DirectionProvider.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -248,7 +286,7 @@
 					<div class="tsd-signature tsd-kind-icon">q0<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Quaternion</span><span class="tsd-signature-symbol"> =&nbsp;new Quaternion()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/DirectionProvider.ts#L26">DirectionProvider.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L25">DirectionProvider.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -258,7 +296,7 @@
 					<div class="tsd-signature tsd-kind-icon">q1<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Quaternion</span><span class="tsd-signature-symbol"> =&nbsp;new Quaternion(-Math.sqrt(0.5), 0, 0, Math.sqrt(0.5))</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/DirectionProvider.ts#L27">DirectionProvider.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L26">DirectionProvider.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -268,7 +306,7 @@
 					<div class="tsd-signature tsd-kind-icon">quaternion<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Quaternion</span><span class="tsd-signature-symbol"> =&nbsp;new Quaternion()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/DirectionProvider.ts#L20">DirectionProvider.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L20">DirectionProvider.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -278,17 +316,17 @@
 					<div class="tsd-signature tsd-kind-icon">screen<wbr>Orientation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/DirectionProvider.ts#L23">DirectionProvider.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L22">DirectionProvider.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a name="targetquanternion" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> target<wbr>Quanternion</h3>
-					<div class="tsd-signature tsd-kind-icon">target<wbr>Quanternion<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Quaternion</span><span class="tsd-signature-symbol"> =&nbsp;new Quaternion()</span></div>
+					<a name="sensor" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> sensor</h3>
+					<div class="tsd-signature tsd-kind-icon">sensor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/DirectionProvider.ts#L21">DirectionProvider.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L30">DirectionProvider.ts:30</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -298,7 +336,7 @@
 					<div class="tsd-signature tsd-kind-icon">zee<span class="tsd-signature-symbol">:</span> <a href="vector3.html" class="tsd-signature-type">Vector3</a><span class="tsd-signature-symbol"> =&nbsp;new Vector3(0, 0, 1)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/DirectionProvider.ts#L25">DirectionProvider.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L24">DirectionProvider.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -309,15 +347,21 @@
 					<a name="connect" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> connect</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">connect<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">connect<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">"absoluteSensor"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"absoluteOrientation"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"deviceOrientation"</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/DirectionProvider.ts#L110">DirectionProvider.ts:110</a></li>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L117">DirectionProvider.ts:117</a></li>
 								</ul>
 							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> type: <span class="tsd-signature-type">"absoluteSensor"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"absoluteOrientation"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"deviceOrientation"</span></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -332,7 +376,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/DirectionProvider.ts#L138">DirectionProvider.ts:138</a></li>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L200">DirectionProvider.ts:200</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -349,7 +393,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/DirectionProvider.ts#L94">DirectionProvider.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L99">DirectionProvider.ts:99</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -366,7 +410,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/DirectionProvider.ts#L53">DirectionProvider.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L56">DirectionProvider.ts:56</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
@@ -397,7 +441,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/DirectionProvider.ts#L49">DirectionProvider.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L52">DirectionProvider.ts:52</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Quaternion</span></h4>
@@ -405,16 +449,16 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a name="setobjectquaternion" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> set<wbr>Object<wbr>Quaternion</h3>
+					<a name="quaternionfromorientation" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> quaternion<wbr>From<wbr>Orientation</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Object<wbr>Quaternion<span class="tsd-signature-symbol">(</span>alpha<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, beta<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, gamma<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, orient<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">quaternion<wbr>From<wbr>Orientation<span class="tsd-signature-symbol">(</span>alpha<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, beta<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, gamma<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, orient<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Quaternion</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/DirectionProvider.ts#L99">DirectionProvider.ts:99</a></li>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L104">DirectionProvider.ts:104</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -432,6 +476,29 @@
 									<h5>orient: <span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Quaternion</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="setobjectquaternion" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> set<wbr>Object<wbr>Quaternion</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Object<wbr>Quaternion<span class="tsd-signature-symbol">(</span>targetQuanternion<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Quaternion</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L111">DirectionProvider.ts:111</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>targetQuanternion: <span class="tsd-signature-type">Quaternion</span></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -446,7 +513,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/DirectionProvider.ts#L57">DirectionProvider.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L60">DirectionProvider.ts:60</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -468,7 +535,7 @@
 					<div class="tsd-signature tsd-kind-icon">debug<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/DirectionProvider.ts#L18">DirectionProvider.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L18">DirectionProvider.ts:18</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external">
@@ -477,7 +544,7 @@
 						<div class="tsd-signature tsd-kind-icon">absolute<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/DirectionProvider.ts#L18">DirectionProvider.ts:18</a></li>
+								<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L18">DirectionProvider.ts:18</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -487,7 +554,7 @@
 						<div class="tsd-signature tsd-kind-icon">alpha<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/DirectionProvider.ts#L18">DirectionProvider.ts:18</a></li>
+								<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L18">DirectionProvider.ts:18</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -497,7 +564,7 @@
 						<div class="tsd-signature tsd-kind-icon">beta<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/DirectionProvider.ts#L18">DirectionProvider.ts:18</a></li>
+								<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L18">DirectionProvider.ts:18</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -507,7 +574,7 @@
 						<div class="tsd-signature tsd-kind-icon">gamma<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/f0e26ae/src/DirectionProvider.ts#L18">DirectionProvider.ts:18</a></li>
+								<li>Defined in <a href="https://github.com/0b01001101/locationar/blob/6445a1e/src/DirectionProvider.ts#L18">DirectionProvider.ts:18</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -527,9 +594,6 @@
 					<li class=" tsd-kind-class tsd-is-external">
 						<a href="brightnessprovider.html" class="tsd-kind-icon">Brightness<wbr>Provider</a>
 					</li>
-					<li class=" tsd-kind-class tsd-is-external">
-						<a href="controller.html" class="tsd-kind-icon">Controller</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-is-external">
@@ -540,6 +604,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 								<a href="directionprovider.html#alphaoffset" class="tsd-kind-icon">alpha<wbr>Offset</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+								<a href="directionprovider.html#callback" class="tsd-kind-icon">callback</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 								<a href="directionprovider.html#enabled" class="tsd-kind-icon">enabled</a>
@@ -563,7 +630,7 @@
 								<a href="directionprovider.html#screenorientation" class="tsd-kind-icon">screen<wbr>Orientation</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-								<a href="directionprovider.html#targetquanternion" class="tsd-kind-icon">target<wbr>Quanternion</a>
+								<a href="directionprovider.html#sensor" class="tsd-kind-icon">sensor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 								<a href="directionprovider.html#zee" class="tsd-kind-icon">zee</a>
@@ -584,6 +651,9 @@
 								<a href="directionprovider.html#getdirection" class="tsd-kind-icon">get<wbr>Direction</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+								<a href="directionprovider.html#quaternionfromorientation" class="tsd-kind-icon">quaternion<wbr>From<wbr>Orientation</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
 								<a href="directionprovider.html#setobjectquaternion" class="tsd-kind-icon">set<wbr>Object<wbr>Quaternion</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
@@ -598,6 +668,9 @@
 				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-is-external">
 						<a href="geomath.html" class="tsd-kind-icon">Geo<wbr>Math</a>
+					</li>
+					<li class=" tsd-kind-class tsd-is-external">
+						<a href="geoutil.html" class="tsd-kind-icon">Geo<wbr>Util</a>
 					</li>
 					<li class=" tsd-kind-class tsd-is-external">
 						<a href="gpslocation.html" class="tsd-kind-icon">Gps<wbr>Location</a>
