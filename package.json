@@ -1,13 +1,14 @@
 {
 	"name": "@0x4d/locationar",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Location based Argumented Reality for three.js",
 	"keywords": [
 		"AR",
 		"Augmented Reality",
 		"three.js",
 		"Location Based",
-		"GPS"
+		"GPS",
+		"AR Tooltips"
 	],
 	"browser": "dist/LOCATIONAR.js",
 	"repository": {

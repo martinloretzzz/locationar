@@ -180,8 +180,8 @@
 			scene.add(new THREE.AmbientLight(0x404040));
 
 			var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
-			light.position.set(4, 20, 4);
-			light.lookAt(0,0,0);
+			directionalLight.position.set(4, 20, 4);
+			directionalLight.lookAt(0,0,0);
 			scene.add(directionalLight);
 
 			let renderer = new THREE.WebGLRenderer({

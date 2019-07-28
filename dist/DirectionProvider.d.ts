@@ -11,13 +11,14 @@ export declare class DirectionProvider {
     private enabled;
     private debug;
     private quaternion;
-    private targetQuanternion;
     private screenOrientation;
     private zee;
     private q0;
     private q1;
     private onDeviceOrientationChangeEvent;
     private onScreenOrientationChangeEvent;
+    private sensor;
+    private callback;
     constructor(callback?: (directionProvider: DirectionProvider) => void);
     getDirection(): Quaternion;
     getDebug(): {
@@ -31,6 +32,7 @@ export declare class DirectionProvider {
         webkitCompassAccuracy?: number;
     }): void;
     dispose(): void;
+    private quaternionFromOrientation;
     private setObjectQuaternion;
     private connect;
     private disconnect;
