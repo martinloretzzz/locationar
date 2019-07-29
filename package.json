@@ -1,6 +1,6 @@
 {
 	"name": "@0x4d/locationar",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Location based Argumented Reality for three.js",
 	"keywords": [
 		"AR",

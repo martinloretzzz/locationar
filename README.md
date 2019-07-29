@@ -1,36 +1,27 @@
 # LOCATIONAR
 
-## Introduction
-
-Readme under construction...
-
 Simple Location based Argumented Reality library, based on the [WebRTC](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API), [Geolocation](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API), [DeviceOrientation](https://developer.mozilla.org/en-US/docs/Web/API/Detecting_device_orientation) and [AmbientLightSensor](https://developer.mozilla.org/en-US/docs/Web/API/AmbientLightSensor)
 
-But you can do a lot of other things to, like:
--building a [compass](https://0b01001101.github.io/locationar/examples/compass.html) with DeviceOrientation
--light your three.js scenes depending on the ambient light[only works on chrome if flag #enable-generic-sensor-extra-classes is enabled]
--others
+## Online Samples:
 
-The lib is small, only 20KB
+1. Use Chrome
+2. goto the [Compass](https://0b01001101.github.io/locationar/examples/compass.html) example and see if it's working [camera is working, north in the right direction]
+3. goto the [Location](https://0b01001101.github.io/locationar/examples/location.html) example and you should see a red cube 10 m in the direction of North
+4. If you don't see the cube or want to change the position click "InfoPanel" and then you can press the button GetPosition to set the position of the cube to your current position and offset it with the +10N, +10W,... buttons
+   Here you can also see the raw sensor data
 
-## Usage
+## Problems/Limentations
 
-LOCATIONAR is provided as an npm module:
-
-```
-npm i @0x4d/locationar
-```
-
-You can also download this repository and import the dist/LOCATIONAR.js file
-
-## Demo
-
-Open https://0b01001101.github.io/locationar/ and set a target position
-
-## Problems
-
-- missing compass accurcy[can't find exact numbers, but up to +/- 10° on good devices, on some devices completely unuseable]
+- **missing compass accurcy**[can't find exact numbers, but up to +/- 10° on good devices, on some devices completely unuseable]
+- camera fov[different phones have different fov's and if the difference between the camera fov and the set fov is to big, the mapping for non-centered, far away objects will be distorted]
 - gps accurcy[can be a problem if the object is nearer than 20 meters]
+- to use the light ambient light sensor, you need to set the chrome flag #enable-generic-sensor-extra-classes to enabled
+
+## Documentation and Examples
+
+- [Docs](https://0b01001101.github.io/locationar/docs)
+- [Examples (Source)](https://github.com/0b01001101/locationar)
+- [Examples (Live)](https://0b01001101.github.io/locationar/)
 
 ## Browser compability
 
@@ -41,11 +32,17 @@ Open https://0b01001101.github.io/locationar/ and set a target position
 ❌Opera
 ❔Safari[can't test on apple devices]
 
-## Documentation and Examples
+## Usage
 
-- [Docs](https://0b01001101.github.io/locationar/docs)
-- [Examples (Source)](https://github.com/0b01001101/locationar)
-- [Examples (Live)](https://0b01001101.github.io/locationar/)
+The lib is small, only 20KB
+
+LOCATIONAR is provided as an npm module:
+
+```
+npm i @0x4d/locationar
+```
+
+You can also download this repository and import the dist/LOCATIONAR.js file
 
 ## Development and Contribution
 

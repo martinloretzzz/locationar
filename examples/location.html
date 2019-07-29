@@ -208,6 +208,10 @@
 				cameraHeight: 1.6,
 				callback: loc => {
 					camera.position.copy(loc.getLocation());
+					if(-1 < gpsTarget.x && gpsTarget.x < 1 && -1 < gpsTarget.z && gpsTarget.z < 1 ) {
+						setTargetToGpsCoords();
+						setTargetOffset(10, 0);
+					}
 				}
 			});
 			let dirProvider = new LOCATIONAR.DirectionProvider({
