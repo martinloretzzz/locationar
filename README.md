@@ -1,5 +1,8 @@
 # LOCATIONAR
 
+[![NPM package][npm]][npm-url]
+[![Build Size][build-size]][build-size-url]
+
 Simple Location based Argumented Reality library, based on the [WebRTC](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API), [Geolocation](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API), [DeviceOrientation](https://developer.mozilla.org/en-US/docs/Web/API/Detecting_device_orientation) and [AmbientLightSensor](https://developer.mozilla.org/en-US/docs/Web/API/AmbientLightSensor)
 
 ## Online Samples:
@@ -34,8 +37,6 @@ Simple Location based Argumented Reality library, based on the [WebRTC](https://
 
 ## Usage
 
-The lib is small, only 20KB
-
 LOCATIONAR is provided as an npm module:
 
 ```
@@ -52,3 +53,8 @@ Please see the [development guide](./DEVELOPMENT.md). If you are interested in c
 
 - [three.js](https://github.com/mrdoob/three.js/) awesome 3d rendering library
 - [THREEAR](https://github.com/JamesMilnerUK/THREEAR) marker based AR libary, with was used as a template for this project
+
+[npm]: https://img.shields.io/npm/v/@0x4d/locationar
+[npm-url]: https://www.npmjs.com/package/@0x4d/locationar
+[build-size]: https://badgen.net/bundlephobia/minzip/@0x4d/locationar
+[build-size-url]: https://bundlephobia.com/result?p=@0x4d/locationar
