@@ -28,12 +28,12 @@ Simple Location based Argumented Reality library, based on the [WebRTC](https://
 
 ## Browser compability
 
-✔️Chrome
-❌Samsung Internet[Scaling doesn't work]
-❌Firefox [no absolute compass]
-❌UC[Source doesn't work]
-❌Opera
-❔Safari[can't test on apple devices]
+✔️Chrome  
+❌Samsung Internet[Scaling doesn't work]  
+❌Firefox [no absolute compass]  
+❌UC[Source doesn't work]  
+❌Opera  
+❔Safari[can't test on apple devices]  
 
 ## Usage
 
