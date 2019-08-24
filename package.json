@@ -46,10 +46,5 @@
 		"webpack-cli": "^3.3.5",
 		"webpack-dev-server": "^3.7.2"
 	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "npm run lint:fix"
-		}
-	},
-	"types": "src/LOCATIONAR.ts"
+		"types": "src/LOCATIONAR.ts"
 }

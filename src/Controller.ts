@@ -13,13 +13,13 @@ export class Controller {
 		camera: {
 			aspect: number;
 			updateProjectionMatrix: () => void;
-			      position: Vector3Type;
+			position: Vector3Type;
 			quaternion: QuaternionType;
 			cameraHeight: number;
 		},
 		cameraHeight: number,
 		canvas: HTMLElement,
-		sourceParams: Partial<SourceParameters> = {}
+		sourceParams: Partial<SourceParameters> = {} // hey
 	) {
 		sourceParams.camera = camera;
 		sourceParams.canvas = canvas;
