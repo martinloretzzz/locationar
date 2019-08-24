@@ -13,7 +13,7 @@ export class Controller {
 		camera: {
 			aspect: number;
 			updateProjectionMatrix: () => void;
-			position: Vector3Type;
+			      position: Vector3Type;
 			quaternion: QuaternionType;
 			cameraHeight: number;
 		},
