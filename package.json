@@ -36,14 +36,14 @@
 		"live-server": "^1.2.1",
 		"prettier": "^1.18.2",
 		"prettier-webpack-plugin": "^1.2.0",
-		"ts-loader": "^6.0.4",
+		"ts-loader": "^9.4.2",
 		"tslint": "^5.18.0",
 		"tslint-config-prettier": "^1.18.0",
 		"typedoc": "^0.14.2",
 		"typescript": "^3.5.3",
-		"webpack": "^4.35.3",
+		"webpack": "^5.75.0",
 		"webpack-bundle-analyzer": "^3.3.2",
-		"webpack-cli": "^3.3.5",
+		"webpack-cli": "^5.0.1",
 		"webpack-dev-server": "^3.7.2"
 	},
 	"husky": {
